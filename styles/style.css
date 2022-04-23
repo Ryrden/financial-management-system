@@ -1,0 +1,10 @@
+:root {
+    --MarromIdeal:	#A6702E;
+    --MarromClaro:	#F2AF5C;
+    --MarromEscuro:	#593810;
+    --Branco:	#F8F8FB;
+}
+
+.btn-primary {
+    background-color: var(--MarromIdeal);
+}
