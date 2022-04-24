@@ -1,6 +1,6 @@
 # ./docker-compose.yml
 
-version: '3'
+version: "3"
 
 services:
   db:
@@ -20,7 +20,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./src/views:/var/www/html/
+      - ./src:/var/www/html/
     ports:
       - "8100:80"
     stdin_open: true
