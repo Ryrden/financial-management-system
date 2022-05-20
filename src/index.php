@@ -21,11 +21,39 @@
     </script>
 
     <!-- Bootstrap Links -->
-
+    <link rel="stylesheet" href="../styles/style.css">
     <title>Sistema de Gestão Financeira</title>
 </head>
 
 <body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-sm-4 ">
+                <div class="d-flex align-items-center container pt-3">
+                    <span class="py-2 px-3 border border-dark rounded">Sistema de Gestão financeira</span>
+                </div>
+                <div class="d-flex flex-column justify-content-center text-center mt-5">
+                    <img src="#" alt="..." class="border-dark rounded-circle bg-warning">
+                    <span id=" userName">Nome do usuário</span>
+                    <span>Perfil econômico</span>
+                    <div class="bg-danger rounded-pill">R$ 0,00</div>
+                </div>
+            </div>
+            <div class=" col-sm-8">
+                <div class="d-flex flex-row nav justify-content-between">
+                    <div>
+                        <ul class="nav pt-3">
+                            <li class="nav-item"><a class="nav-link" active href="#">Home</a></li>
+                            <li><a class="nav-link" href="#">Questionário</a></li>
+                            <li><a class="nav-link" href="#">Docs</a></li>
+                        </ul>
+                    </div>
+                    <div>teste</div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
     <h1>Bem vindo a página inicial :)</h1>
 </body>
 
