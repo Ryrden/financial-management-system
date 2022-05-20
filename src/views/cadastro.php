@@ -44,7 +44,7 @@
                     <input type="password" class="form-control" id="password">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">Entrar</button>
-                <p>Já possui conta? <a href="#">Fazer login</a></p>
+                <p>Já possui conta? <a href="login.php">Fazer login</a></p>
             </form>
         </div>
     </div>

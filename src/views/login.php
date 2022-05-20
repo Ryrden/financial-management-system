@@ -18,7 +18,7 @@
 
     <!-- Bootstrap Links -->
     <link rel="stylesheet" href="../styles/style.css">
-    <title>Cadastro</title>
+    <title>Login</title>
 </head>
 
 <body>
@@ -36,7 +36,7 @@
                     <input type="password" class="form-control" id="password" placeholder="Pelo menos 6 caracteres">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill mb-3">Entrar</button>
-                <p>Não é registrado? <a href="#">Criar conta</a></p>
+                <p>Não é registrado? <a href="cadastro.php">Criar conta</a></p>
             </form>
         </div>
     </div>
