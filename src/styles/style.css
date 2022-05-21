@@ -7,4 +7,5 @@
 
 .btn-primary {
     background-color: var(--MarromIdeal);
+    border-color: var(--MarromIdeal);
 }
