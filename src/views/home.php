@@ -1,39 +1,5 @@
-<<<<<<< HEAD:src/views/home.php
 <!DOCTYPE html>
 <html lang="pt-BR">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Bootstrap Links -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
-    </script>
-
-    <!-- Bootstrap Links -->
-    <link rel="stylesheet" href="../styles/style.css">
-    <title>Home</title>
-</head>
-
-<body>
-<div class="d-flex vh-100 justify-content-center align-items-center">
-    <div class="container col-md-4 border shadow p-4 rounded-lg">
-        <h1>Home</h1>
-
-    </div>
-</div>
-</body>
-
-=======
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -55,57 +21,57 @@
     </script>
 
     <!-- Bootstrap Links -->
-    <link rel="stylesheet" href="./styles/style.css">
-    <title>Sistema de Gestão Financeira</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <title>Página Inicial</title>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <!-- NAVBAR -->
-        <div class="d-flex flex-row ">
-            <div class="col-sm-3 d-flex align-items-center">
-                <div class="offset-1">
-                    <span class="py-2 px-3 border border-dark rounded">Sistema de Gestão financeira</span>
-                </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="col-3">
+                <a class="navbar-brand" href="#">Sistema de Gestão Financeira</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
             </div>
-            <div class="col-sm-9 ">
-                <div class="d-flex flex-row justify-content-between align-items-center">
-                    <ul class="col-10 nav pt-3">
-                        <li class="nav-item"><a class="nav-link" active href="#">Home</a></li>
-                        <li><a class="nav-link" href="#">Questionário</a></li>
-                        <li><a class="nav-link" href="#">Docs</a></li>
+            <div class="col-9">
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Questionário</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Documentos</a>
+                        </li>
                     </ul>
-                    <div class="col-2 mt-3 p-0 d-flex align-items-center justify-content-between bg-dark rounded-pill ">
-                        <img src="./imgs/chicken.jpg" alt="..." class="border-dark rounded-circle" width="50px">
-                        <span class="mx-1" id=" userName">Nome do usuário</span>
-                    </div>
+                    <span class="navbar-text">
+                        Usuario
+                    </span>
                 </div>
-                <hr>
             </div>
         </div>
-        <!-- CONTENT -->
-        <div class="d-flex flex-row justify-content-center">
-            <div class="col-sm-3">
-                <div class="d-flex flex-column align-items-center text-center mt-5 offset-3">
-                    <img src="./imgs/chicken.jpg" alt="..." class="border-dark rounded-circle" width="100px">
-                    <span id="userName">Nome do usuário</span>
-                    <span>Perfil econômico</span>
-                    <div class="px-2 py-1 bg-danger rounded-pill"><i class="bi bi-coin"></i>R$ 0,00</div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-3">
+                <div class="container">
+                    <img src="..." alt="..." class="rounded-circle">
+                    <span>Nome do Usuario</span>
+                    <span>Perfil economico</span>
+                    <div class="container bg-light"></div>
                 </div>
             </div>
-            <div class="col-sm-9">
-                <div class="h2" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
-                <div class="d-flex flex-row" id="content">
-                    <div class="primaryContent bg-danger col-7">a</div>
-                    <div class="col-5 row">
-                        <div class="col-9 secondContent bg-warning">a</div>
-                        <div class="col-3"></div>
-                    </div>
-                </div>
+            <div class="col-9">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat, commodi necessitatibus ad nulla
+                dolores sint laboriosam repellendus tempore illum ex rerum eum aliquid expedita incidunt laborum,
+                exercitationem, nihil cupiditate inventore.
             </div>
         </div>
     </div>
 </body>
 
->>>>>>> main:src/index.php
 </html>
