@@ -26,7 +26,7 @@
         <div class="container col-md-4 border shadow p-4 rounded-lg">
             <h1>Cadastro</h1>
             <p>Preencha as caixas abaixo com seus dados</p>
-            <form method="post" action="http://localhost/financial-management-system/index.php/user/register">
+            <form id="registerForm" method="post" action="http://localhost/financial-management-system/index.php/user/register">
                 <div class="form-group">
                     <label for="name">Seu nome</label>
                     <input name="name" type="text" class="form-control" id="name" aria-describedby="text" placeholder="Seu nome completo">
@@ -48,6 +48,19 @@
             </form>
         </div>
     </div>
+    <script>
+        const form = document.getElementById("registerForm");
+        form.addEventListener("submit", e => {
+            e.preventDefault()
+            const passwordInput = document.getElementById("password")
+            const passwordConfirmInput = document.getElementById("passwordConfirm")
+            if (passwordInput.value !== passwordConfirmInput.value) {
+                alert("As senhas não cofirmam")
+            } else {
+                e.target.submit();
+            }
+        })
+    </script>
 </body>
 
 </html>
