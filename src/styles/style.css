@@ -3,9 +3,29 @@
     --MarromClaro:	#F2AF5C;
     --MarromEscuro:	#593810;
     --Branco:	#F8F8FB;
+
+    --BackgroundPrimary: #644219;
+    --BackgroundSecond: #bb7f36;
+
 }
 
 .btn-primary {
     background-color: var(--MarromIdeal);
     border-color: var(--MarromIdeal);
+}
+
+html,body{
+    height: 100%;
+}
+
+html{
+    background: var(--Branco);
+}
+
+body{
+    background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%);
+    background-repeat: no-repeat;
+    height: 60%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
 }
