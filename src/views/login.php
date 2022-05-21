@@ -18,7 +18,7 @@
 
     <!-- Bootstrap Links -->
     <link rel="stylesheet" href="../styles/style.css">
-    <title>Cadastro</title>
+    <title>Login</title>
 </head>
 
 <body>
