@@ -17,7 +17,9 @@
     </script>
 
     <!-- Bootstrap Links -->
-    <link rel="stylesheet" href="../styles/style.css">
+    <style>
+        <?php include("src/styles/style.css"); ?>
+    </style>
     <title>Cadastro</title>
 </head>
 

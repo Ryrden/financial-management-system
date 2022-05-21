@@ -9,16 +9,10 @@ class UserController
 
         try {
             User::insert($name, $email, $password);
-            echo "<script>
-                alert('Usuário cadastrado com sucesso!')
-                location.href='http://localhost/financial-management-system/index.php/login';
-            </script>";
+            echo "<script>alert('Usuário cadastrado com sucesso!'); location.href='http://localhost/financial-management-system/index.php/login'; </script>";
 
         } catch (Exception $e) {
-            echo "<script>
-                alert('".$e->getMessage()."')
-                location.href='http://localhost/financial-management-system/index.php/cadastro';
-            </script>";
+            echo "<script> alert('".$e->getMessage()."'); location.href='http://localhost/financial-management-system/index.php/cadastro'; </script>";
         }
     }
 
@@ -28,20 +22,13 @@ class UserController
         try {
             $user = User::findUserWithEmail($email);
             if (!$user OR $user['senha'] != $password) {
-                echo "<script>
-                alert('Credenciais incorretas')
-                location.href='http://localhost/financial-management-system/index.php/login';
-            </script>";
+                echo "<script> alert('Credenciais incorretas'); location.href='http://localhost/financial-management-system/index.php/login'; </script>";
             } else {
-                echo "<script>
-                location.href='http://localhost/financial-management-system/index.php/';
-            </script>";
+                $_SESSION['user'] = $user;
+                echo "<script> location.href='http://localhost/financial-management-system/index.php/'; </script>";
             }
         } catch (Exception $e) {
-            echo "<script>
-                alert('".$e->getMessage()."')
-                location.href='http://localhost/financial-management-system/index.php/login';
-            </script>";
+            echo "<script> alert('".$e->getMessage()."'); location.href='http://localhost/financial-management-system/index.php/login'; </script>";
         }
 
     }

@@ -4,10 +4,10 @@ class User
 {
     public static function insert($name, $email, $password)
     {
-        $conn = Connection::getConnection();
         $userWithEmail = self::findUserWithEmail($email);
+        $conn = Connection::getConnection();
 
-        $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :password)";
+        $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
 
         if (!$userWithEmail) {
             try {
@@ -15,7 +15,7 @@ class User
                 $statement->execute([
                     ":nome" => $name,
                     ":email" => $email,
-                    ":password" => $password,
+                    ":senha" => $password,
                 ]);
             } catch (PDOException $e) {
                 throw new Exception("Erro ao inserir");
