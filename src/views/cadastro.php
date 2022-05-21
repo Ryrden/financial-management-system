@@ -26,22 +26,22 @@
         <div class="container col-md-4 border shadow p-4 rounded-lg">
             <h1>Cadastro</h1>
             <p>Preencha as caixas abaixo com seus dados</p>
-            <form>
+            <form method="post" action="http://localhost/financial-management-system/index.php/user/register">
                 <div class="form-group">
                     <label for="name">Seu nome</label>
-                    <input type="text" class="form-control" id="name" aria-describedby="text" placeholder="Seu nome completo">
+                    <input name="name" type="text" class="form-control" id="name" aria-describedby="text" placeholder="Seu nome completo">
                 </div>
                 <div class="form-group">
                     <label for="email">Endereço de e-mail</label>
-                    <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="nome@exemplo.com">
+                    <input name="email" type="email" class="form-control" id="email" aria-describedby="email" placeholder="nome@exemplo.com">
                 </div>
                 <div class="form-group">
                     <label for="password">Senha</label>
-                    <input type="password" class="form-control" id="password" placeholder="Pelo menos 6 caracteres">
+                    <input name="password" type="password" class="form-control" id="password" placeholder="Pelo menos 6 caracteres">
                 </div>
                 <div class="form-group">
                     <label for="password">Confirmar Senha</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" class="form-control" id="passwordConfirm">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">Entrar</button>
                 <p>Já possui conta? <a href="#">Fazer login</a></p>
