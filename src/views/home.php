@@ -36,44 +36,46 @@
 </head>
 
 <body>
-    <div class="container-fluid">
+    <div class="container-fluid pt-3">
         <!-- NAVBAR -->
         <div class="d-flex flex-row ">
-            <div class="col-sm-3 d-flex justify-content-center align-items-center">
-                <div class="py-2 px-3 border-2 border-dark rounded">
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
+                <div id="logoSystem">
                     <p class="text-center m-0">Sistema de Gestão financeira</p>
                 </div>
             </div>
-            <div class="col-sm-9 ">
-                <div class="d-flex flex-row justify-content-between align-items-center">
-                    <ul class="col-md-10 col-sm-9 nav pt-3">
-                        <li class="nav-item"><a class="nav-link" active href="#">Home</a></li>
+            <div class="col-md-9">
+                <div class="d-flex flex-row align-items-center">
+                    <ul class="col-md-10 col-sm-9 nav">
+                        <li><a class="nav-link" active href="#">Home</a></li>
                         <li><a class="nav-link" href="#">Questionário</a></li>
                         <li><a class="nav-link" href="#">Docs</a></li>
                     </ul>
-                    <div class="col-md-2 col-sm-3 rounded-pill bg-light " id="userPicName">
-                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle" width="50px">
-                        <span id="userName">Nome do usuário</span>
+                    <div class="col-md-2 col-sm-3 rounded-pill p-0" id="userPicName">
+                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle">
+                        <span id="userName">Nome</span>
                     </div>
                 </div>
-                <hr>
             </div>
         </div>
         <!-- CONTENT -->
-        <div class="d-flex flex-row justify-content-center">
-            <div class="col-sm-3">
-                <div class="d-flex flex-column my-5 offset-3">
+        <div class="d-flex flex-row justify-content-center pt-5">
+            <div class="col-md-3">
+                <div class="d-flex flex-column offset-3">
                     <div class="d-flex flex-column align-items-center text-center ">
-                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark rounded-circle"
+                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark m-3 rounded-circle"
                             width="100px">
-                        <span id="userName">Nome do usuário</span>
-                        <span>Perfil econômico</span>
-                        <div class="px-1 py-1 bg-light rounded-pill d-flex justify-content-between align-items-center">
-                            <i class='bi bi-coin'></i> R$ 1000,00
+                        <div class="d-flex flex-column mb-2">
+                            <span id="userName">Nome do usuário</span>
+                            <span>Perfil econômico</span>
+                        </div>
+                        <div id="moneyDiv" class="rounded-pill">
+                            <i class='bi bi-coin'></i>
+                            <span id="userMoney">R$ 0,00</span>
                         </div>
                     </div>
                     <div class="container d-flex flex-row my-5">
-                        <div class="col-sm">
+                        <div class="col-md">
                             <a href="#">
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="m-2" src="src/imgs/home.svg" width="52" height="52">
@@ -87,7 +89,7 @@
                                 </div>
                             </a>
                         </div>
-                        <div class="col-sm">
+                        <div class="col-md">
                             <a href="#">
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="m-2" src="src/imgs/questionario.svg" width="52" height="52">
@@ -104,7 +106,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-9">
+            <div class="col-md-9">
                 <div class="h2" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
                 <div class="d-flex flex-row" id="content">
                     <div class="primaryContent bg-danger col-7">a</div>
