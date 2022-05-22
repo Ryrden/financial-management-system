@@ -10,6 +10,5 @@ class HomeController
             require_once "src/views/home.php";
         else
             require_once "src/views/login.php";
-        $_SESSION["user"] = NULL;
     }
 }
