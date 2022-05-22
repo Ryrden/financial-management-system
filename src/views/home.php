@@ -1,3 +1,7 @@
+<?php
+    if (!isset($_SESSION))
+        session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap Links -->
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
@@ -20,89 +25,83 @@
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
 
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
-    <!-- Bootstrap Links -->
-
-    <!-- Bootstrap Font Icon Link -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-
-    <!-- CSS Link -->
     <style>
-    <?php include("src/styles/style.css");
-    ?>
+    <?php include "src/styles/style.css"?>
     </style>
     <title>Sistema de Gestão Financeira</title>
 </head>
 
 <body>
-    <div class="container-fluid pt-3">
-        <!-- NAVBAR -->
-        <?php
+    <div class="container-fluid">
+        <div class="container-fluid pt-3">
+            <!-- NAVBAR -->
+            <?php 
         require_once 'src/partials/navbar.php'
         ?>
-        <!-- CONTENT -->
-        <div class="d-flex flex-row justify-content-center pt-5">
-            <!-- Primeira Coluna -->
-            <div class="col-md-3">
-                <div class="d-flex flex-column offset-3">
-                    <div class="d-flex flex-column align-items-center text-center ">
-                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark m-3 rounded-circle"
-                            width="100px">
-                        <div class="d-flex flex-column mb-2">
-                            <span id="userName">Nome do usuário</span>
-                            <span>Perfil econômico</span>
+            <!-- CONTENT -->
+            <div class="d-flex flex-row justify-content-center pt-5">
+                <!-- Primeira Coluna -->
+                <div class="col-md-3">
+                    <div class="d-flex flex-column offset-3">
+                        <div class="d-flex flex-column align-items-center text-center ">
+                            <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark m-3 rounded-circle"
+                                width="100px">
+                            <div class="d-flex flex-column mb-2">
+                                <span id="userName"><?=$_SESSION["user"]["nome"]?></span>
+                                <span>Perfil econômico</span>
+                            </div>
+                            <div id="moneyDiv" class="rounded-pill">
+                                <i class='bi bi-coin'></i>
+                                <span id="userMoney">R$ 0,00</span>
+                            </div>
                         </div>
-                        <div id="moneyDiv" class="rounded-pill">
-                            <i class='bi bi-coin'></i>
-                            <span id="userMoney">R$ 0,00</span>
-                        </div>
-                    </div>
-                    <div class="container d-flex flex-row my-5">
-                        <div class="col-md">
-                            <a href="#">
-                                <div class="d-flex flex-column align-items-center">
-                                    <img class="m-2" src="src/imgs/home.svg" width="52" height="52">
-                                    <span>Home</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="d-flex flex-column align-items-center">
-                                    <img class="m-2" src="src/imgs/pessoa.svg" width="52" height="52">
-                                    <span>Perfil</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-md">
-                            <a href="#">
-                                <div class="d-flex flex-column align-items-center">
-                                    <img class="m-2" src="src/imgs/questionario.svg" width="52" height="52">
-                                    <span>Questionário</span>
-                                </div>
-                            </a>
-                            <a href="#">
-                                <div class="d-flex flex-column align-items-center">
-                                    <img class="m-2" src="src/imgs/documentos.svg" width="52" height="52">
-                                    <span>Documentos</span>
-                                </div>
-                            </a>
+                        <div class="container d-flex flex-row my-5">
+                            <div class="col-md">
+                                <a href="#">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img class="m-2" src="src/imgs/home.svg" width="52" height="52">
+                                        <span>Home</span>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img class="m-2" src="src/imgs/pessoa.svg" width="52" height="52">
+                                        <span>Perfil</span>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-md">
+                                <a href="#">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img class="m-2" src="src/imgs/questionario.svg" width="52" height="52">
+                                        <span>Questionário</span>
+                                    </div>
+                                </a>
+                                <a href="#">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <img class="m-2" src="src/imgs/documentos.svg" width="52" height="52">
+                                        <span>Documentos</span>
+                                    </div>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Segunda coluna -->
-            <div class="col-md-9">
-                <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
-                <div class="d-flex flex-row" id="content">
-                    <div class="primaryContent bg-danger col-7">a</div>
-                    <div class="col-5 row">
-                        <div class="col-9 secondContent bg-warning">a</div>
-                        <div class="col-3"></div>
+                <!-- Segunda coluna -->
+                <div class="col-md-9">
+                    <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
+                    <div class="d-flex flex-row" id="content">
+                        <div class="primaryContent bg-danger col-7">a</div>
+                        <div class="col-5 row">
+                            <div class="col-9 secondContent bg-warning">a</div>
+                            <div class="col-3"></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

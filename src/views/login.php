@@ -1,3 +1,7 @@
+<?php
+    if (!isset($_SESSION))
+        session_start();
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -20,20 +24,24 @@
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
 
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
     <!-- Bootstrap Links -->
     <style>
-    <?php include("src/styles/style.css");
+    <?php include "src/styles/style.css";
     ?>
     </style>
     <title>Login</title>
 </head>
 
 <body>
+    <div class="bg-half bigger"></div>
     <div class="d-flex vh-100 justify-content-center align-items-center">
         <div class="bg-light container col-md-4 border shadow p-4 rounded-lg">
             <h1 class="text-dark">Login</h1>
             <p class="text-dark">Entre com sua conta para continuar</p>
-            <form method="post" action="http://localhost/financial-management-system/index.php/user/login" class="mt-5">
+            <form method="post" action="<?=BASE_URL."/user/login"?>" class="mt-5">
                 <div class="form-group mb-4">
                     <label for="email" class="text-dark">Endereço de e-mail</label>
                     <input name="email" type="email" class="form-control" id="email" aria-describedby="email"
@@ -45,7 +53,7 @@
                         placeholder="Pelo menos 6 caracteres">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill mb-3 text-white">Entrar</button>
-                <p class="text-dark">Não é registrado? <a href="cadastro">Criar conta</a></p>
+                <p class="text-dark">Não é registrado? <a href="<?=BASE_URL."/cadastro"?>">Criar conta</a></p>
             </form>
         </div>
     </div>

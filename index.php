@@ -1,5 +1,7 @@
 <?php
 
+const BASE_URL = "http://localhost/financial-management-system";
+
 require_once "src/controllers/Core.php";
 
 require_once "src/Database/Connection.php";

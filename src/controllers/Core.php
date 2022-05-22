@@ -4,7 +4,6 @@ class Core
 {
     public function start($uri, $getParams) {
         $uriData = $this->parseUrl($uri);
-
         $controller = ucfirst($uriData["controllerName"])."Controller";
         $method = $uriData["methodName"];
         $args = count($getParams) > 0 ? $getParams :  array("params" => null);
@@ -22,7 +21,7 @@ class Core
     private function parseUrl($url) {
         $array = explode('/', $url);
         $calls = array_slice($array, 3, 2);
-        if (count($calls) == 0) {
+        if (count($calls) == 0 || $calls[0] == "") {
             return array("controllerName" => "Home", "methodName" => "index");
         } else if (count($calls) == 1) {
             $controllerName = $calls[0];
