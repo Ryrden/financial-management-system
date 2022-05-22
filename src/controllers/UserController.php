@@ -39,4 +39,14 @@ class UserController
         unset($_SESSION['user']);
         echo "<script> location.href='".BASE_URL."/login"."'; </script>";
     }
+
+    public static function mustBeLoggedIn() {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        if (!isset($_SESSION["user"])) {
+            $loginUrl = BASE_URL."/login";
+            echo "<script>location.href='$loginUrl'</script>";
+        }
+    }
 }

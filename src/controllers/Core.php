@@ -7,7 +7,6 @@ class Core
         $controller = ucfirst($uriData["controllerName"])."Controller";
         $method = $uriData["methodName"];
         $args = count($getParams) > 0 ? $getParams :  array("params" => null);
-
         if (class_exists($controller) && method_exists($controller, $method)) {
             call_user_func_array(array(new $controller, $method), $args);
             http_response_code(200);
