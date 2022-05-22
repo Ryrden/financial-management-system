@@ -51,15 +51,17 @@
                         <li><a class="nav-link" href="#">Questionário</a></li>
                         <li><a class="nav-link" href="#">Docs</a></li>
                     </ul>
-                    <div class="col-md-2 col-sm-3 rounded-pill p-0" id="userPicName">
+                    <div class="col-md-2 col-sm-3 rounded-pill p-0 mb-1" id="userPicName">
                         <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle">
                         <span id="userName">Nome</span>
                     </div>
                 </div>
+                <hr>
             </div>
         </div>
         <!-- CONTENT -->
         <div class="d-flex flex-row justify-content-center pt-5">
+            <!-- Primeira Coluna -->
             <div class="col-md-3">
                 <div class="d-flex flex-column offset-3">
                     <div class="d-flex flex-column align-items-center text-center ">
@@ -106,8 +108,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Segunda coluna -->
             <div class="col-md-9">
-                <div class="h2" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
+                <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
                 <div class="d-flex flex-row" id="content">
                     <div class="primaryContent bg-danger col-7">a</div>
                     <div class="col-5 row">
