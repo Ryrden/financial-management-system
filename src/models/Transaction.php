@@ -16,6 +16,7 @@ class Transaction
                 ":type" => $type,
                 ":userId" => $userId
             ]);
+            return true;
         } catch (PDOException $e) {
             return false;
         }
@@ -40,8 +41,8 @@ class Transaction
             }
 
             foreach ($results as $transaction) {
-                $transaction->valor = $numberFormatter->formatCurrency($transaction->valor, "BRL");
-                $transaction->data = date_format(new DateTime($transaction->data), "d/m");
+                $transaction->formattedValor = $numberFormatter->formatCurrency($transaction->valor, "BRL");
+                $transaction->formattedData = date_format(new DateTime($transaction->data), "d/m");
             }
 
             return $results;
@@ -84,5 +85,26 @@ class Transaction
         } catch (PDOException $e) {
             return false;
         }
+    }
+
+    public function update($id, $date, $value, $name, $type) {
+        $conn = Connection::getConnection();
+
+        $sql = "UPDATE movimentacao SET data = :date, valor = :value, nome = :name, tipo = :type WHERE id = :id";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":date" => $date,
+                ":value" => $value,
+                ":name" => $name,
+                ":type" => $type,
+                ":id" => $id
+            ]);
+            return true;
+        } catch (PDOException $e) {
+            return false;
+        }
+
     }
 }

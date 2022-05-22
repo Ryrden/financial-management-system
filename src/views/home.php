@@ -35,7 +35,49 @@
 <body>
 <div class="container-fluid">
     <div class="bg-half"></div>
+    <!-- Modal -->
+    <div class="modal fade" id="editTransactionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-dark">Editar uma movimentação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="<?=BASE_URL."/transaction/update"?>" method="post">
+                    <div class="modal-body d-flex flex-column">
+                            <div class="form-group">
+                                <label class="text-dark" for="modalNome">Nome</label>
+                                <input type="text" class="form-control" id="modalNome" name="nome" placeholder="Nome da movimentação">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="modalValor">Valor</label>
+                                <input type="number" class="form-control" id="modalValor" name="valor" placeholder="00.00">
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="modalTipo">Example select</label>
+                                <select class="form-control" name="tipo" id="modalTipo">
+                                    <option value="ganho" selected>Ganho</option>
+                                    <option value="gasto">Gasto</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="text-dark" for="modalData">Data</label>
+                                <input type="date" class="form-control" id="modalData" name="data">
+                            </div>
+                            <input type="hidden" name="id" value="" id="modalId">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid py-3">
+
         <!-- NAVBAR -->
         <div class="d-flex flex-row ">
             <div class="col-md-3 d-flex justify-content-center align-items-center">
@@ -119,21 +161,50 @@
                                 <?php } ?>
                                 <?php foreach ($transactions as $index => $transaction) { ?>
                                 <li class="container row mb-2 d-flex align-items-center">
-                                    <div class="container col-1 text-dark rounded py-2"><?=$transaction->data?></div>
+                                    <div class="container col-1 text-dark rounded py-2"><?=$transaction->formattedData?></div>
                                     <div class="container d-flex justify-content-between align-items-center col-9 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
                                         <p class="m-2"><?=$transaction->nome?></p>
-                                        <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
-                                            <img src="src/imgs/trash.svg" alt="Lixeira">
-                                        </a>
+                                        <div>
+                                            <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
+                                                <img src="src/imgs/trash.svg" alt="Lixeira">
+                                            </a>
+                                            <button
+                                                    class="btnEdit"
+                                                    data-id="<?=$transaction->id?>"
+                                                    data-data="<?=$transaction->data?>"
+                                                    data-valor="<?=$transaction->valor?>"
+                                                    data-tipo="<?=$transaction->tipo?>"
+                                                    data-nome="<?=$transaction->nome?>"
+                                                    style="border: none; background: none;" type="button"
+                                                    data-toggle="modal"
+                                                    data-target="#editTransactionModal"
+                                            >
+                                                <img src="src/imgs/edit.svg" alt="Editar">
+                                            </button>
+
+                                        </div>
                                     </div>
                                     <div class="col-2 d-flex d-flex justify-content-center <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?> py-2 ">
-                                        <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->valor ?>
+                                        <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->formattedValor ?>
                                     </div>
                                 </li>
                                 <?php } ?>
                             </ul>
                         </div>
                     </div>
+                    <script>
+                        const buttons = document.querySelectorAll(".btnEdit");
+                        const fields = ["id", "valor", "nome", "tipo", "data"];
+                        buttons.forEach(btn => {
+                            btn.addEventListener("click", () => {
+                                fields.forEach(field => {
+                                    const id = `modal${field.charAt(0).toUpperCase() + field.slice(1)}`;
+                                    const element = document.getElementById(id);
+                                    element.setAttribute("value", btn.dataset[field]);
+                                })
+                            })
+                        })
+                    </script>
                     <div class="primaryContent bg-white rounded-lg mt-4">
                         <div class="container py-3 gap-2">
                             <h2 class="text-dark pb-3 pt-2">Adicionar movimentação</h2>

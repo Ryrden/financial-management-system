@@ -45,4 +45,29 @@ class TransactionController
         }
 
     }
+
+    public function update($params) {
+        try {
+            $transactionsModel = new Transaction();
+
+            $id = $_POST['id'];
+            $date = $_POST['data'];
+            $value = $_POST['valor'];
+            $name = $_POST['nome'];
+            $type = $_POST['tipo'];
+
+            $updated = $transactionsModel->update($id, $date, $value, $name, $type);
+
+            if ($updated) {
+                echo "<script>alert('Update completo'); location.href='".BASE_URL."'</script>";
+            } else {
+                echo "<script>alert('Erro no update'); location.href='".BASE_URL."'</script>";
+            }
+        } catch (Exception $e) {
+            echo "<script>alert('Unhandled server error'); location.href='".BASE_URL."'</script>";
+        }
+
+
+    }
+
 }
