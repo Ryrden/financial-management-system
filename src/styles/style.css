@@ -9,11 +9,6 @@
 
 }
 
-.btn-primary {
-    background-color: var(--MarromIdeal);
-    border-color: var(--MarromIdeal);
-}
-
 html,body{
     height: 100%;
 }
@@ -25,7 +20,30 @@ html{
 body{
     background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%);
     background-repeat: no-repeat;
-    height: 60%;
+    height: 60vh;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
+}
+
+a{
+    text-decoration: none;
+}
+
+.btn-primary {
+    background-color: var(--MarromIdeal);
+    border-color: var(--MarromIdeal);
+}
+
+#userPicName {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#userPicName #userName {
+    width: 100px;
+}
+
+.border-2 {
+    border: solid 2px;
 }
