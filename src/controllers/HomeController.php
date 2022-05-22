@@ -9,6 +9,6 @@ class HomeController
         if (isset($_SESSION["user"]))
             require_once "src/views/home.php";
         else
-            require_once "src/views/login.php";
+            echo "<script>location.href='".BASE_URL."/login"."'</script>";
     }
 }

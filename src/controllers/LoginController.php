@@ -7,7 +7,7 @@ class LoginController
             session_start();
 
         if (isset($_SESSION["user"]))
-            require_once "src/views/home.php";
+            echo "<script>location.href='".BASE_URL."'</script>";
         else
             require_once "src/views/login.php";
     }
