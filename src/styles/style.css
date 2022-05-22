@@ -5,10 +5,15 @@
     --MarromEscuro:	#593810;
     --Branco:	#F8F8FB;
 
+    --CinzaClaro: #c7c7c7;
+
+
     --BackgroundPrimary: #644219;
     --BackgroundSecond: #bb7f36;
 
     --CorTexto: #e9e1d7;
+
+
 
 }
 
@@ -78,7 +83,7 @@ hr {
 }
 
 #moneyDiv{
-    background-color: #c7c7c7 ;
+    background-color: var(--CinzaClaro);
 }
 
 #moneyDiv i {
