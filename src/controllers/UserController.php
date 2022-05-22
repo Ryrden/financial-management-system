@@ -33,4 +33,10 @@ class UserController
         }
 
     }
+
+    public function logout() {
+        session_start();
+        unset($_SESSION['user']);
+        echo "<script> location.href='".BASE_URL."/login"."'; </script>";
+    }
 }

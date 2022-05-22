@@ -44,26 +44,28 @@
             <div class="col-md-9">
                 <div class="d-flex flex-row align-items-center">
                     <ul class="col-md-10 col-sm-9 nav">
-                        <li><a class="nav-link" active href="#">Home</a></li>
+                        <li><a class="nav-link" href="#">Home</a></li>
                         <li><a class="nav-link" href="#">Questionário</a></li>
                         <li><a class="nav-link" href="#">Docs</a></li>
                     </ul>
-                    <div class="col-md-2 col-sm-3 rounded-pill p-0" id="userPicName">
+                    <a href="<?=BASE_URL."/user/logout/"?>" class="d-flex justify-content-between col-md-2 col-sm-3 rounded-pill p-0 mb-1" id="userPicName">
                         <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle">
-                        <span id="userName">Nome</span>
-                    </div>
+                        <p class="m-0 w-100 d-flex justify-content-center text-light">Logout</p>
+                    </a>
                 </div>
+                <hr>
             </div>
         </div>
         <!-- CONTENT -->
         <div class="d-flex flex-row justify-content-center pt-5">
+            <!-- Primeira Coluna -->
             <div class="col-md-3">
                 <div class="d-flex flex-column offset-3">
                     <div class="d-flex flex-column align-items-center text-center ">
                         <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark m-3 rounded-circle"
                             width="100px">
                         <div class="d-flex flex-column mb-2">
-                            <span id="userName">Nome do usuário</span>
+                            <span id="userName"><?=$_SESSION["user"]["nome"]?></span>
                             <span>Perfil econômico</span>
                         </div>
                         <div id="moneyDiv" class="rounded-pill">
@@ -103,8 +105,9 @@
                     </div>
                 </div>
             </div>
+            <!-- Segunda coluna -->
             <div class="col-md-9">
-                <div class="h2" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
+                <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
                 <div class="d-flex flex-row" id="content">
                     <div class="primaryContent bg-danger col-7">a</div>
                     <div class="col-5 row">

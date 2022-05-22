@@ -23,7 +23,7 @@ html{
 body{
     background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%);
     background-repeat: no-repeat;
-    height: 60vh;
+    height: 22em;
     border-bottom-left-radius: 5%;
     border-bottom-right-radius: 5%;
     color: var(--CorTexto);
@@ -45,6 +45,10 @@ a{
     border: solid 2px var(--MarromEscuro);
     border-radius: 2%;
     padding: 0.35em 1.25em;
+}
+
+hr{
+    margin: 0;
 }
 
 #userPicName {
