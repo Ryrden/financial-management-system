@@ -5,7 +5,7 @@ abstract class Connection
 
     public static function getConnection() {
         if (self::$conn == null) {
-            self::$conn = new PDO("mysql: host=localhost; dbname=sistema_financeiro_tcc;", "root", "root");
+            self::$conn = new PDO("mysql: host=localhost; dbname=sistema_financeiro_tcc;", "root", "");
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return self::$conn;
         }
