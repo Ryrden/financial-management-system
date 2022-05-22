@@ -12,21 +12,20 @@
 
 }
 
-html,body{
-    height: 100%;
-}
-
-html{
-    background: var(--Branco);
-}
 
 body{
-    background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%);
-    background-repeat: no-repeat;
-    height: 22em;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 5%;
+    background: #dbd4d3;
     color: var(--CorTexto);
+}
+
+.bg-half {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 60vh;
+    width: 100vw;
+    border-radius: 0 0 5% 5%;
+    background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%) no-repeat;
 }
 
 a{
@@ -75,10 +74,6 @@ hr {
 
 #moneyDiv{
     background-color: #c7c7c7 ;
-    display: flex;
-    flex-direction: row;
-    padding: 0.25em 0.80em;
-    justify-content: space-between;
 }
 
 #moneyDiv i {
@@ -87,4 +82,12 @@ hr {
 
 .border-2 {
     border: solid 2px;
+}
+
+.income {
+    background-color: #8ade91;
+}
+
+.outcome {
+    background-color: #de948a;
 }
