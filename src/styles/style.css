@@ -19,20 +19,14 @@
 
 
 body{
-    background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%);
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    height: 22em;
-    border-bottom-left-radius: 5%;
-    border-bottom-right-radius: 5%;
     color: var(--CorTexto);
 }
 
 .bg-half {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
-    height: 60vh;
+    height: 22em;
     width: 100vw;
     border-radius: 0 0 5% 5%;
     background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%) no-repeat;
