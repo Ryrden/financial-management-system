@@ -16,19 +16,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
 
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
     <!-- Bootstrap Links -->
-    <style>
-        <?php include("src/styles/style.css"); ?>
-    </style>
+    <style><?php include("src/styles/style.css"); ?></style>
     <title>Cadastro</title>
 </head>
 
 <body>
+    <div class="bg-half bigger"></div>
     <div class="d-flex vh-100 justify-content-center align-items-center">
-        <div class="container col-md-4 border shadow p-4 rounded-lg">
+        <div class="container col-md-4 border shadow p-4 rounded-lg bg-white">
             <h1>Cadastro</h1>
             <p>Preencha as caixas abaixo com seus dados</p>
-            <form id="registerForm" method="post" action="http://localhost/financial-management-system/index.php/user/register">
+            <form id="registerForm" method="post" action="<?=BASE_URL."/user/register"?>">
                 <div class="form-group">
                     <label for="name">Seu nome</label>
                     <input name="name" type="text" class="form-control" id="name" aria-describedby="text" placeholder="Seu nome completo">
@@ -46,7 +48,7 @@
                     <input type="password" class="form-control" id="passwordConfirm">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill">Entrar</button>
-                <p>Já possui conta? <a href="login.php">Fazer login</a></p>
+                <p>Já possui conta? <a href="<?php echo BASE_URL ?>/login">Fazer login</a></p>
             </form>
         </div>
     </div>

@@ -1,5 +1,4 @@
 <?php
-
 abstract class Connection
 {
     public static $conn;

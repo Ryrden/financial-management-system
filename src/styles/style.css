@@ -1,6 +1,7 @@
 :root {
     --MarromIdeal:	#A6702E;
     --MarromClaro:	#F2AF5C;
+    --MarromClaro2: #d18c38;
     --MarromEscuro:	#593810;
     --Branco:	#F8F8FB;
 }
@@ -8,4 +9,19 @@
 .btn-primary {
     background-color: var(--MarromIdeal);
     border-color: var(--MarromIdeal);
+}
+
+.bg-half {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 60vh;
+    border-radius: 0 0 50px 50px;
+    background: linear-gradient(var(--MarromClaro), var(--MarromClaro2));
+    z-index: -10000;
+}
+
+.bg-half.bigger {
+    height: 80vh;
 }

@@ -1,3 +1,7 @@
+<?php
+    if (!isset($_SESSION))
+        session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,14 +24,18 @@
             integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
 
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
     <!-- Bootstrap Links -->
-    <link rel="stylesheet" href="./styles/style.css">
+    <style><?php include "src/styles/style.css"?></style>
     <title>Sistema de Gestão Financeira</title>
 </head>
 
 <body>
 <div class="container-fluid">
     <!-- NAVBAR -->
+    <div class="bg-half"></div>
     <div class="d-flex flex-row ">
         <div class="col-sm-3 d-flex align-items-center">
             <div class="offset-1">
@@ -37,13 +45,13 @@
         <div class="col-sm-9 ">
             <div class="d-flex flex-row justify-content-between align-items-center">
                 <ul class="col-10 nav pt-3">
-                    <li class="nav-item"><a class="nav-link" active href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
                     <li><a class="nav-link" href="#">Questionário</a></li>
                     <li><a class="nav-link" href="#">Docs</a></li>
                 </ul>
                 <div class="col-2 mt-3 p-0 d-flex align-items-center justify-content-between bg-dark rounded-pill ">
                     <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark rounded-circle" width="50px">
-                    <span class="mx-1" id=" userName">Nome do usuário</span>
+                    <p class="m-0 d-flex w-100 justify-content-center" style="color: white;"><?= $_SESSION["user"]["nome"] ?></p>
                 </div>
             </div>
             <hr>
@@ -54,13 +62,13 @@
         <div class="col-sm-3">
             <div class="d-flex flex-column align-items-center text-center mt-5 offset-3">
                 <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark rounded-circle" width="100px">
-                <span id="userName">Nome do usuário</span>
+                <span class="mt-3" id="userName"><?= $_SESSION["user"]["nome"] ?></span>
                 <span>Perfil econômico</span>
-                <div class="px-2 py-1 bg-danger rounded-pill"><i class="bi bi-coin"></i>R$ 0,00</div>
+                <div class="px-2 py-1 bg-danger rounded-pill mt-3"><i data-feather="circle"></i><p class="m-0">R$ 0,00</p></div>
             </div>
         </div>
         <div class="col-sm-9">
-            <div class="h2" id="subTitle">Seja Bem-vindo(a), <span id="userName">Nome do usuário!</span></div>
+            <div class="h2" id="subTitle">Seja Bem-vindo(a), <?= $_SESSION["user"]["nome"] ?></div>
             <div class="d-flex flex-row" id="content">
                 <div class="primaryContent bg-danger col-7">a</div>
                 <div class="col-5 row">
