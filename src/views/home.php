@@ -1,6 +1,7 @@
 <?php
     if (!isset($_SESSION))
         session_start();
+    $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +34,8 @@
 
 <body>
 <div class="container-fluid">
-    <div class="container-fluid pt-3">
+    <div class="bg-half"></div>
+    <div class="container-fluid py-3">
         <!-- NAVBAR -->
         <div class="d-flex flex-row ">
             <div class="col-md-3 d-flex justify-content-center align-items-center">
@@ -68,7 +70,7 @@
                             <span id="userName"><?=$_SESSION["user"]["nome"]?></span>
                             <span>Perfil econômico</span>
                         </div>
-                        <div id="moneyDiv" class="rounded-pill">
+                        <div id="moneyDiv" class="d-flex align-items-center rounded-pill moneyDiv justify-content-center p-2 text-dark">
                             <i class='bi bi-coin'></i>
                             <span id="userMoney">R$ 0,00</span>
                         </div>
@@ -108,13 +110,58 @@
             <!-- Segunda coluna -->
             <div class="col-md-9">
                 <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
-                <div class="d-flex flex-row" id="content">
-                    <div class="primaryContent bg-danger col-7">a</div>
-                    <div class="col-5 row">
-                        <div class="col-9 secondContent bg-warning">a</div>
-                        <div class="col-3"></div>
+                    <div class="primaryContent bg-white rounded-lg">
+                        <div class="container py-3 gap-2">
+                            <h2 class="text-dark pb-3 pt-2">Movimentações</h2>
+                            <ul class="row">
+                                <?php if (count($transactions) == 0) { ?>
+                                    <p class="text-dark">Não há transações</p>
+                                <?php } ?>
+                                <?php foreach ($transactions as $index => $transaction) { ?>
+                                <li class="container row mb-2 d-flex align-items-center">
+                                    <div class="container col-1 text-dark rounded py-2"><?=$transaction->data?></div>
+                                    <div class="container d-flex justify-content-between align-items-center col-9 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
+                                        <p class="m-2"><?=$transaction->nome?></p>
+                                        <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
+                                            <img src="src/imgs/trash.svg" alt="Lixeira">
+                                        </a>
+                                    </div>
+                                    <div class="col-2 d-flex d-flex justify-content-center <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?> py-2 ">
+                                        <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->valor ?>
+                                    </div>
+                                </li>
+                                <?php } ?>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                    <div class="primaryContent bg-white rounded-lg mt-4">
+                        <div class="container py-3 gap-2">
+                            <h2 class="text-dark pb-3 pt-2">Adicionar movimentação</h2>
+                            <form action="<?=BASE_URL."/transaction/insert"?>" method="post" class="d-flex flex-column">
+                                <div class="form-group">
+                                    <label class="text-dark" for="nome">Nome</label>
+                                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da movimentação">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="valor">Valor</label>
+                                    <input type="number" class="form-control" id="valor" name="valor" placeholder="00.00">
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="tipo">Example select</label>
+                                    <select class="form-control" name="tipo" id="tipo">
+                                        <option value="ganho" selected>Ganho</option>
+                                        <option value="gasto">Gasto</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="text-dark" for="date">Data</label>
+                                    <input type="date" class="form-control" id="data" name="data">
+                                </div>
+                                <button type="submit" class="btn btn-primary align-self-end">Submit</button>
+                            </form>
+                        </div>
+                    </div>
+
             </div>
         </div>
     </div>
