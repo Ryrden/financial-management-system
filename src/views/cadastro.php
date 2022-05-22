@@ -20,6 +20,9 @@
         integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
     </script>
 
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
     <!-- Bootstrap Links -->
     <style>
     <?php include("src/styles/style.css");
@@ -29,12 +32,12 @@
 </head>
 
 <body>
+    <div class="bg-half bigger"></div>
     <div class="d-flex vh-100 justify-content-center align-items-center">
         <div class="container bg-light col-md-4 border shadow p-4 rounded-lg">
             <h1 class="text-dark">Cadastro</h1>
             <p class="text-dark">Preencha as caixas abaixo com seus dados</p>
-            <form id="registerForm" method="post"
-                action="http://localhost/financial-management-system/index.php/user/register">
+            <form id="registerForm" method="post" action="<?=BASE_URL."/user/register"?>">
                 <div class="form-group">
                     <label for="name" class="text-dark">Seu nome</label>
                     <input name=" name" type="text" class="form-control" id="name" aria-describedby="text"
@@ -55,7 +58,7 @@
                     <input type="password" class="form-control" id="passwordConfirm">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill text-white">Entrar</button>
-                <p class="text-dark">Já possui conta? <a href="login">Fazer login</a></p>
+                <p>Já possui conta? <a href="<?php echo BASE_URL ?>/login">Fazer login</a></p>
             </form>
         </div>
     </div>

@@ -1,0 +1,22 @@
+{
+    "name": "etec/tcc",
+    "description": "financial management system",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Controllers\\": "src/controllers",
+            "Database\\": "src/Database",
+            "models\\": "src/models"
+        }
+    },
+    "authors": [
+        {
+            "name": "Davi Felix",
+            "email": "davi.felix.lima@gmail.com"
+        }
+    ],
+    "require": {
+      "ext-pdo": "*"
+    }
+}

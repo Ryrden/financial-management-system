@@ -27,13 +27,18 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+<<<<<<< HEAD
     <style>
     <?php include "src/styles/style.css"?>
     </style>
+=======
+    <style><?php include "src/styles/style.css"?></style>
+>>>>>>> eba330c818a3bec0f175ff04428a497eb66f8035
     <title>Sistema de Gestão Financeira</title>
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="container-fluid">
         <div class="container-fluid pt-3">
             <!-- NAVBAR -->
@@ -56,6 +61,47 @@
                                 <i class='bi bi-coin'></i>
                                 <span id="userMoney">R$ 0,00</span>
                             </div>
+=======
+<div class="container-fluid">
+    <div class="container-fluid pt-3">
+        <!-- NAVBAR -->
+        <div class="d-flex flex-row ">
+            <div class="col-md-3 d-flex justify-content-center align-items-center">
+                <div id="logoSystem">
+                    <p class="text-center m-0">Sistema de Gestão financeira</p>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="d-flex flex-row align-items-center">
+                    <ul class="col-md-10 col-sm-9 nav">
+                        <li><a class="nav-link" href="#">Home</a></li>
+                        <li><a class="nav-link" href="#">Questionário</a></li>
+                        <li><a class="nav-link" href="#">Docs</a></li>
+                    </ul>
+                    <a href="<?=BASE_URL."/user/logout/"?>" class="d-flex justify-content-between col-md-2 col-sm-3 rounded-pill p-0 mb-1" id="userPicName">
+                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle">
+                        <p class="m-0 w-100 d-flex justify-content-center text-light">Logout</p>
+                    </a>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <!-- CONTENT -->
+        <div class="d-flex flex-row justify-content-center pt-5">
+            <!-- Primeira Coluna -->
+            <div class="col-md-3">
+                <div class="d-flex flex-column offset-3">
+                    <div class="d-flex flex-column align-items-center text-center ">
+                        <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark m-3 rounded-circle"
+                            width="100px">
+                        <div class="d-flex flex-column mb-2">
+                            <span id="userName"><?=$_SESSION["user"]["nome"]?></span>
+                            <span>Perfil econômico</span>
+                        </div>
+                        <div id="moneyDiv" class="rounded-pill">
+                            <i class='bi bi-coin'></i>
+                            <span id="userMoney">R$ 0,00</span>
+>>>>>>> eba330c818a3bec0f175ff04428a497eb66f8035
                         </div>
                         <div class="container d-flex flex-row my-5">
                             <div class="col-md">
@@ -89,6 +135,7 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< HEAD
                 <!-- Segunda coluna -->
                 <div class="col-md-9">
                     <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
@@ -98,6 +145,17 @@
                             <div class="col-9 secondContent bg-warning">a</div>
                             <div class="col-3"></div>
                         </div>
+=======
+            </div>
+            <!-- Segunda coluna -->
+            <div class="col-md-9">
+                <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
+                <div class="d-flex flex-row" id="content">
+                    <div class="primaryContent bg-danger col-7">a</div>
+                    <div class="col-5 row">
+                        <div class="col-9 secondContent bg-warning">a</div>
+                        <div class="col-3"></div>
+>>>>>>> eba330c818a3bec0f175ff04428a497eb66f8035
                     </div>
                 </div>
             </div>

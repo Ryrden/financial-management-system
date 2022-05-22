@@ -28,19 +28,29 @@
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
     <!-- Bootstrap Links -->
+<<<<<<< HEAD
     <style>
     <?php include "src/styles/style.css";
     ?>
     </style>
+=======
+    <style> <?php include "src/styles/style.css"; ?> </style>
+>>>>>>> eba330c818a3bec0f175ff04428a497eb66f8035
     <title>Login</title>
 </head>
 
 <body>
     <div class="bg-half bigger"></div>
     <div class="d-flex vh-100 justify-content-center align-items-center">
+<<<<<<< HEAD
         <div class="bg-light container col-md-4 border shadow p-4 rounded-lg">
             <h1 class="text-dark">Login</h1>
             <p class="text-dark">Entre com sua conta para continuar</p>
+=======
+        <div class="container col-md-4 border shadow p-4 rounded-lg">
+            <h1>Login</h1>
+            <p>Entre com sua conta para continuar</p>
+>>>>>>> eba330c818a3bec0f175ff04428a497eb66f8035
             <form method="post" action="<?=BASE_URL."/user/login"?>" class="mt-5">
                 <div class="form-group mb-4">
                     <label for="email" class="text-dark">Endereço de e-mail</label>
@@ -52,8 +62,13 @@
                     <input name="password" type="password" class="form-control" id="password"
                         placeholder="Pelo menos 6 caracteres">
                 </div>
+<<<<<<< HEAD
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill mb-3 text-white">Entrar</button>
                 <p class="text-dark">Não é registrado? <a href="<?=BASE_URL."/cadastro"?>">Criar conta</a></p>
+=======
+                <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill mb-3">Entrar</button>
+                <p>Não é registrado? <a href="<?=BASE_URL."/cadastro"?>">Criar conta</a></p>
+>>>>>>> eba330c818a3bec0f175ff04428a497eb66f8035
             </form>
         </div>
     </div>
