@@ -73,9 +73,6 @@ class Transaction
 
         $sql = "DELETE FROM movimentacao WHERE id = :id";
 
-        if ($transaction->id_usuario != $userId)
-            return false;
-
         try {
             $statement = $conn->prepare($sql);
             $statement->execute([

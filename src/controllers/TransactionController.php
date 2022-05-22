@@ -34,7 +34,13 @@ class TransactionController
             session_start();
         try {
             $transactionsModel = new Transaction();
-            $deleted = $transactionsModel->delete($id, $_SESSION["user"]["codigo"]);
+            $transaction = $transactionsModel->get($id);
+
+            if ($transaction->id_usuario == $_SESSION["user"]["codigo"])
+                $deleted = $transactionsModel->delete($id, $_SESSION["user"]["codigo"]);
+            else
+                $deleted = false;
+
             if ($deleted) {
                 echo "<script>alert('Movimentação deletada com sucesso'); location.href='".BASE_URL."'</script>";
             } else {
@@ -47,6 +53,9 @@ class TransactionController
     }
 
     public function update($params) {
+        UserController::mustBeLoggedIn();
+        if (!isset($_SESSION))
+            session_start();
         try {
             $transactionsModel = new Transaction();
 
@@ -56,7 +65,13 @@ class TransactionController
             $name = $_POST['nome'];
             $type = $_POST['tipo'];
 
-            $updated = $transactionsModel->update($id, $date, $value, $name, $type);
+            $transaction = $transactionsModel->get($id);
+
+            if ($transaction->id_usuario == $_SESSION["user"]["codigo"])
+                $updated = $transactionsModel->update($id, $date, $value, $name, $type);
+            else
+                $updated = false;
+
 
             if ($updated) {
                 echo "<script>alert('Update completo'); location.href='".BASE_URL."'</script>";
