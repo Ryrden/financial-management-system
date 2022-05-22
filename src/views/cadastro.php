@@ -32,8 +32,7 @@
 </head>
 
 <body>
-    <div class="bg-half bigger"></div>
-    <div class="d-flex vh-100 justify-content-center align-items-center">
+    <div class="bg-half d-flex vh-100 justify-content-center align-items-center">
         <div class="container bg-light col-md-4 border shadow p-4 rounded-lg">
             <h1 class="text-dark">Cadastro</h1>
             <p class="text-dark">Preencha as caixas abaixo com seus dados</p>

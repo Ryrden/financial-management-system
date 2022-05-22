@@ -22,7 +22,8 @@ body{
     color: var(--CorTexto);
 }
 
-.bg-half {
+.bg-half::before {
+    content: ' ';
     position: absolute;
     top: 0;
     right: 0;
@@ -30,6 +31,10 @@ body{
     width: 100vw;
     border-radius: 0 0 5% 5%;
     background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%) no-repeat;
+}
+
+.bg-half.bigger::before {
+    height: 30em;
 }
 
 a{

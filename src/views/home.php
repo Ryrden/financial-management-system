@@ -35,8 +35,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
 </head>
 
 <body>
-<div class="container-fluid">
-    <div class="bg-half"></div>
+<div class="container-fluid bg-half">
     <!-- Modal -->
     <div class="modal fade" id="editTransactionModal" tabindex="-1" role="dialog"
          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
