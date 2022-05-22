@@ -41,7 +41,7 @@ class Transaction
             }
 
             foreach ($results as $transaction) {
-                $transaction->formattedValor = $numberFormatter->formatCurrency($transaction->valor, "BRL");
+                $transaction->formattedValor = $numberFormatter->formatCurrency($transaction->valor / 100, "BRL");
                 $transaction->formattedData = date_format(new DateTime($transaction->data), "d/m");
             }
 

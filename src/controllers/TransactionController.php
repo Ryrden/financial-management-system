@@ -61,7 +61,7 @@ class TransactionController
 
             $id = $_POST['id'];
             $date = $_POST['data'];
-            $value = $_POST['valor'];
+            $value = $_POST['valor'] * 100;
             $name = $_POST['nome'];
             $type = $_POST['tipo'];
 

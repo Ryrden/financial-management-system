@@ -202,7 +202,12 @@
                                 fields.forEach(field => {
                                     const id = `modal${field.charAt(0).toUpperCase() + field.slice(1)}`;
                                     const element = document.getElementById(id);
-                                    element.setAttribute("value", btn.dataset[field]);
+                                    if (field === "valor")
+                                        element.setAttribute("value", String(btn.dataset[field] / 100));
+                                    else if (field === 'tipo')
+                                        document.querySelector(`option[value=${btn.dataset[field]}]`).setAttribute("selected", true);
+                                    else
+                                        element.setAttribute("value", btn.dataset[field]);
                                 })
                             })
                         })
