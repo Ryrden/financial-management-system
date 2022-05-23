@@ -31,7 +31,7 @@ class User
     public static function findUserWithEmail($email) {
         $conn = Connection::getConnection();
 
-        $sql = "SELECT * FROM usuario WHERE email = :email";
+        $sql = "SELECT u.*, p.tipo as nomePerfil, p.descricao as perfilDescricao, p.image as perfilImagem, SUM(IF(m.tipo = 'ganho', m.valor, -m.valor)) as renda FROM usuario u INNER JOIN perfil p on u.id_perfil = p.id INNER JOIN movimentacao m on u.codigo = m.id_usuario WHERE email = :email";
         try {
             $statement = $conn->prepare($sql);
             $statement->execute([
@@ -45,5 +45,4 @@ class User
             throw new Exception("Unhandled server error");
         }
     }
-
 }

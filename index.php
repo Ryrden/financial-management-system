@@ -24,6 +24,9 @@ require_once "src/controllers/TransactionController.php";
 
 require_once "src/controllers/DocumentosController.php";
 require_once "src/controllers/QuestionarioController.php";
+require_once "src/controllers/ProfileController.php";
+
+require_once "src/utils/Format.php";
 
 
 $core = new Core();
