@@ -48,7 +48,7 @@ $questions = QuestionarioController::listQuestions();
             <div class="col-md-9">
                 <div class="d-flex flex-row align-items-center">
                     <ul class="col-md-10 col-sm-9 nav">
-                        <li><a class="nav-link" href="#">Home</a></li>
+                        <li><a class="nav-link" href="<?=BASE_URL?>">Home</a></li>
                         <li><a class="nav-link" href="#">Questionário</a></li>
                         <li><a class="nav-link" href="#">Docs</a></li>
                     </ul>
@@ -82,7 +82,7 @@ $questions = QuestionarioController::listQuestions();
                     </div>
                     <div class="container d-flex flex-row justify-content-center mt-5">
                         <div class="col-md">
-                            <a href="#">
+                            <a href="<?=BASE_URL?>">
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="m-2" src="src/imgs/home.svg" width="52" height="52">
                                     <span>Home</span>

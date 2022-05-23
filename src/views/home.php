@@ -93,7 +93,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                 <div class="d-flex flex-row align-items-center">
                     <ul class="col-md-10 col-sm-9 nav">
                         <li><a class="nav-link" href="#">Home</a></li>
-                        <li><a class="nav-link" href="#">Questionário</a></li>
+                        <li><a class="nav-link" href="<?=BASE_URL."/questionario"?>">Questionário</a></li>
                         <li><a class="nav-link" href="#">Docs</a></li>
                     </ul>
                     <a href="<?=BASE_URL."/user/logout/"?>"
@@ -140,7 +140,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                             </a>
                         </div>
                         <div class="col-md">
-                            <a href="#">
+                            <a href="<?=BASE_URL."/questionario"?>">
                                 <div class="d-flex flex-column align-items-center">
                                     <img class="m-2" src="src/imgs/questionario.svg" width="52" height="52">
                                     <span>Questionário</span>
