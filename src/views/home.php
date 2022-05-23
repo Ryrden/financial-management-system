@@ -83,6 +83,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
         <div class="container-fluid py-3">
 
             <!-- NAVBAR -->
+
             <div class="d-flex flex-row ">
                 <div class="col-md-3 d-flex justify-content-center align-items-center">
                     <div id="logoSystem">
@@ -93,7 +94,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                     <div class="d-flex flex-row align-items-center">
                         <ul class="col-md-10 col-sm-9 nav">
                             <li><a class="nav-link" href="#">Home</a></li>
-                            <li><a class="nav-link" href="#">Questionário</a></li>
+                            <li><a class="nav-link" href="<?=BASE_URL."/questionario"?>">Questionário</a></li>
                             <li><a class="nav-link" href="#">Docs</a></li>
                         </ul>
                         <a href="<?=BASE_URL."/user/logout/"?>"
