@@ -8,6 +8,7 @@ require_once "src/Database/Connection.php";
 
 require_once "src/models/User.php";
 require_once "src/models/Transaction.php";
+require_once "src/models/Charts.php";
 
 require_once "src/controllers/LoginController.php";
 require_once "src/controllers/CadastroController.php";

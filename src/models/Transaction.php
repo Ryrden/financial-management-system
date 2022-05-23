@@ -67,6 +67,26 @@ class Transaction
         }
     }
 
+    public function getByMonth($_month,$userId) {
+        $conn = Connection::getConnection();
+
+        $sql = "SELECT SUM(case when tipo = 'ganho' then valor else -valor end) as moneyService 
+                        FROM movimentacao 
+                        WHERE month(data) = :_month
+                        AND id_usuario = :userId";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":_month" => $_month,
+                ":userId" => $userId
+            ]);
+            return  ((float) $statement->fetch()["moneyService"] / 100);
+        } catch (PDOException $e) {
+            return false;
+        }
+    }
+
     public function delete($id, $userId) {
         $conn = Connection::getConnection();
         $transaction = $this->get($id);
