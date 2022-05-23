@@ -10,5 +10,8 @@ class DocumentosController
             require_once "src/views/documentos.php";
         else
             echo "<script>location.href='".BASE_URL."/login"."'</script>";
+
+     
+        
     }
 }

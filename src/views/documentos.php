@@ -37,51 +37,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
 <body>
     <div class="container-fluid bg-half">
         <!-- Modal -->
-        <div class="modal fade" id="editTransactionModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-dark">Editar uma movimentação</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="<?=BASE_URL."/transaction/update"?>" method="post">
-                        <div class="modal-body d-flex flex-column">
-                            <div class="form-group">
-                                <label class="text-dark" for="modalNome">Nome</label>
-                                <input type="text" class="form-control" id="modalNome" name="nome"
-                                    placeholder="Nome da movimentação">
-                            </div>
-                            <div class="form-group">
-                                <label class="text-dark" for="modalValor">Valor</label>
-                                <input type="number" step="0.01" class="form-control" id="modalValor" name="valor"
-                                    placeholder="00.00">
-                            </div>
-                            <div class="form-group">
-                                <label class="text-dark" for="modalTipo">Example select</label>
-                                <select class="form-control" name="tipo" id="modalTipo">
-                                    <option value="ganho" selected>Ganho</option>
-                                    <option value="gasto">Gasto</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-dark" for="modalData">Data</label>
-                                <input type="date" class="form-control" id="modalData" name="data">
-                            </div>
-                            <input type="hidden" name="id" value="" id="modalId">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Editar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
         <div class="container-fluid py-3">
-
             <!-- NAVBAR -->
             <div class="d-flex flex-row ">
                 <div class="col-md-3 d-flex justify-content-center align-items-center">
@@ -126,7 +82,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                         </div>
                         <div class="container d-flex flex-row justify-content-center mt-5">
                             <div class="col-md">
-                                <a href="#">
+                                <a href="<?=BASE_URL."/home"?>">
                                     <div class="d-flex flex-column align-items-center">
                                         <img class="m-2" src="src/imgs/home.svg" width="52" height="52">
                                         <span>Home</span>
@@ -160,97 +116,46 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                 <div class="col-md-9">
                     <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
                     <div class="primaryContent bg-white rounded-lg">
-                        <div class="container py-3 gap-2">
-                            <h2 class="text-dark pb-3 pt-2">Movimentações</h2>
-                            <ul class="row">
-                                <?php if (count($transactions) == 0) { ?>
-                                <p class="text-dark">Não há transações</p>
-                                <?php } ?>
-                                <?php foreach ($transactions as $index => $transaction) { ?>
-                                <li class="container row mb-2 d-flex align-items-center">
-                                    <div class="container col-1 text-dark rounded py-2"><?=$transaction->formattedData?>
-                                    </div>
-                                    <div
-                                        class="container d-flex justify-content-between align-items-center col-9 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
-                                        <p class="m-2"><?=$transaction->nome?></p>
-                                        <div>
-                                            <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
-                                                <img src="src/imgs/trash.svg" alt="Lixeira">
-                                            </a>
-                                            <button class="btnEdit" data-id="<?=$transaction->id?>"
-                                                data-data="<?=$transaction->data?>"
-                                                data-valor="<?=$transaction->valor?>"
-                                                data-tipo="<?=$transaction->tipo?>" data-nome="<?=$transaction->nome?>"
-                                                style="border: none; background: none;" type="button"
-                                                data-toggle="modal" data-target="#editTransactionModal">
-                                                <img src="src/imgs/edit.svg" alt="Editar">
-                                            </button>
-
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="col-2 d-flex d-flex justify-content-center <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?> py-2 ">
-                                        <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->formattedValor ?>
-                                    </div>
-                                </li>
-                                <?php } ?>
-                            </ul>
-                        </div>
+                        <?php 
+                            $charts = new Charts();
+                            $dataPoints = $charts->yearMoneyService();
+                        ?>
+                        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+                        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
                     </div>
-                    <script>
-                    const buttons = document.querySelectorAll(".btnEdit");
-                    const fields = ["id", "valor", "nome", "tipo", "data"];
-                    buttons.forEach(btn => {
-                        btn.addEventListener("click", () => {
-                            fields.forEach(field => {
-                                const id =
-                                    `modal${field.charAt(0).toUpperCase() + field.slice(1)}`;
-                                const element = document.getElementById(id);
-                                if (field === "valor")
-                                    element.setAttribute("value", String(btn.dataset[field] /
-                                        100));
-                                else if (field === 'tipo')
-                                    document.querySelector(
-                                        `option[value=${btn.dataset[field]}]`).setAttribute(
-                                        "selected", true);
-                                else
-                                    element.setAttribute("value", btn.dataset[field]);
-                            })
-                        })
-                    })
-                    </script>
-                    <div class="primaryContent bg-white rounded-lg mt-4">
-                        <div class="container py-3 gap-2">
-                            <h2 class="text-dark pb-3 pt-2">Adicionar movimentação</h2>
-                            <form action="<?=BASE_URL."/transaction/insert"?>" method="post" class="d-flex flex-column">
-                                <div class="form-group">
-                                    <label class="text-dark" for="nome">Nome</label>
-                                    <input type="text" class="form-control" id="nome" name="nome"
-                                        placeholder="Nome da movimentação">
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-dark" for="valor">Valor</label>
-                                    <input type="number" step="0.01" class="form-control" id="valor" name="valor"
-                                        placeholder="00.00">
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-dark" for="tipo">Example select</label>
-                                    <select class="form-control" name="tipo" id="tipo">
-                                        <option value="ganho" selected>Ganho</option>
-                                        <option value="gasto">Gasto</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label class="text-dark" for="data">Data</label>
-                                    <input type="date" class="form-control" id="data" name="data">
-                                </div>
-                                <button type="submit" class="btn btn-primary align-self-end">Submit</button>
-                            </form>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+        </div>
+    </div>
+    <script>
+    window.onload = function() {
+
+        var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            exportEnabled: true,
+            theme: "light1", // "light1", "light2", "dark1", "dark2"
+            title: {
+                text: "Movimentações durante o ano"
+            },
+            axisY: {
+                includeZero: true
+            },
+            axisX: {
+                valueFormatString: "###",
+                labelPlacement: "teste"
+            },
+            data: [{
+                type: "column", //change type to bar, line, area, pie, etc
+                //indexLabel: "{y}", //Shows y value on all Data Points
+                indexLabelFontColor: "#5A5757",
+                indexLabelPlacement: "outside",
+                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+            }]
+        });
+        chart.render();
+
+    }
+    </script>
 </body>
 
 </html>

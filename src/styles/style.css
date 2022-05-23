@@ -20,6 +20,7 @@
 
 body{
     color: var(--CorTexto);
+    background: #f5eceb;
 }
 
 .bg-half::before {
