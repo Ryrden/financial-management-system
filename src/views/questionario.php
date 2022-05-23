@@ -118,54 +118,20 @@ $questions = QuestionarioController::listQuestions();
                 <div class="primaryContent p-3 text-dark bg-white rounded-lg">
                     <h2 class="pb-2 border-bottom border-dark">Perguntas</h2>
 
-                    <form class="d-flex flex-column" action="">
+                    <form method="POST" action="<?= BASE_URL."/questionario/answer" ?>" class="d-flex flex-column" action="">
                         <?php foreach ($questions as $question) { ?>
                             <div class="my-3">
                                 <p class="lead"><strong><?=$question['texto']?></strong></p>
                                 <div class="list-group">
                                 <?php foreach ($question['alternatives'] as $alternative) { ?>
                                     <label for="<?= $alternative['id'] ?>" class="list-group-item">
-                                        <input type="radio" id="<?= $alternative['id'] ?>" value="<?= $question['pontuacao'] ?>" name="<?= $question['id'] ?>">
+                                        <input type="radio" id="<?= $alternative['id'] ?>" value="<?= $alternative['pontuacao'] ?>" name="<?= $question['id'] ?>">
                                         <span> <?=$alternative['texto'] ?></span>
                                     </label>
                                 <?php } ?>
                                 </div>
                             </div>
                         <?php } ?>
-                        <div class="my-3">
-                            <p class="lead"><strong>O que você ganha por mês é suficiente para arcar com os seus gastos?</strong></p>
-                            <div class="list-group">
-                                <label for="1a" class="list-group-item">
-                                    <input type="radio" id="1a" value="10" name="1">
-                                    <span> Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês;</span>
-                                </label>
-                                <label for="1b" class="list-group-item">
-                                    <input type="radio" id="1b" value="5" name="1">
-                                    <span> Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês;</span>
-                                </label>
-                                <label for="1c" class="list-group-item">
-                                    <input type="radio" id="1c" value="0" name="1">
-                                    <span> Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês;</span>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="my-3">
-                            <p class="lead"><strong>O que você ganha por mês é suficiente para arcar com os seus gastos?</strong></p>
-                            <div class="list-group">
-                                <label for="1a" class="list-group-item">
-                                    <input type="radio" id="1a" value="10" name="1">
-                                    <span> Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês;</span>
-                                </label>
-                                <label for="1b" class="list-group-item">
-                                    <input type="radio" id="1b" value="5" name="1">
-                                    <span> Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês;</span>
-                                </label>
-                                <label for="1c" class="list-group-item">
-                                    <input type="radio" id="1c" value="0" name="1">
-                                    <span> Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês;</span>
-                                </label>
-                            </div>
-                        </div>
                         <button type="submit" class="btn btn-primary align-self-end">Responder</button>
                 </form>
                 </div>

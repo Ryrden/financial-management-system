@@ -14,4 +14,20 @@ class QuestionarioController
         $questionaryModel = new Questionario();
         return $questionaryModel->getQuestions(self::$id);
     }
+
+    public function answer() {
+        UserController::mustBeLoggedIn();
+        $profileModel = new Profile();
+        $points = array_sum($_POST);
+        $userId = $_SESSION["user"]["codigo"];
+        $success = $profileModel->setProfile($points, $userId);
+
+        $home = BASE_URL;
+        if ($success) {
+            $message = "Perfil definido com sucesso";
+        } else {
+            $message = "Erro ao definir perfil, tente novamente";
+        }
+        echo "<script>alert('$message'); location.href='$home'</script>";
+    }
 }
