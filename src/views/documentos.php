@@ -146,7 +146,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                                         <span>Questionário</span>
                                     </div>
                                 </a>
-                                <a href="<?=BASE_URL."/documentos"?>">
+                                <a href="#">
                                     <div class="d-flex flex-column align-items-center">
                                         <img class="m-2" src="src/imgs/documentos.svg" width="52" height="52">
                                         <span>Documentos</span>
