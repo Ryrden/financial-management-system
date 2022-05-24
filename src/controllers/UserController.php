@@ -49,4 +49,15 @@ class UserController
             echo "<script>location.href='$loginUrl'</script>";
         }
     }
+
+    public static function updateUser($email) {
+        try {
+            if (!isset($_SESSION))
+                session_start();
+            $user = User::findUserWithEmail($email);
+            $_SESSION['user'] = $user;
+        } catch (Exception $e) {
+            echo "<script> location.href='".BASE_URL."/login"."'; </script>";
+        }
+    }
 }

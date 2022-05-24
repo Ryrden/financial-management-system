@@ -28,8 +28,6 @@ class Transaction
 
         $sql = "SELECT * FROM movimentacao WHERE id_usuario= :id ORDER BY data DESC";
         try {
-            $numberFormatter = new NumberFormatter('pt_BR', NumberFormatter::CURRENCY);
-
             $statement = $conn->prepare($sql);
             $statement->execute([
                 ":id" => $userId,
@@ -41,7 +39,7 @@ class Transaction
             }
 
             foreach ($results as $transaction) {
-                $transaction->formattedValor = $numberFormatter->formatCurrency($transaction->valor / 100, "BRL");
+                $transaction->formattedValor = Format::formatMoneyValue($transaction->valor / 100);
                 $transaction->formattedData = date_format(new DateTime($transaction->data), "d/m");
             }
 
@@ -70,7 +68,7 @@ class Transaction
     public function getByMonth($_month,$userId) {
         $conn = Connection::getConnection();
 
-        $sql = "SELECT SUM(case when tipo = 'ganho' then valor else -valor end) as moneyService 
+        $sql = "SELECT SUM(IF(tipo = 'ganho', valor, -valor)) as moneyService 
                         FROM movimentacao 
                         WHERE month(data) = :_month
                         AND id_usuario = :userId";
@@ -124,4 +122,56 @@ class Transaction
         }
 
     }
+
+    public function getCurrentWeekIncome($mysqlWeekday, $userId) {
+        $conn = Connection::getConnection();
+        $sql = "SELECT SUM(IF(tipo = 'ganho', m.valor, -m.valor)) as total FROM movimentacao m 
+                            WHERE WEEKDAY(m.data) = :weekday AND WEEK(m.data) = WEEK(NOW()) AND id_usuario = :id";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":id" => $userId,
+                ":weekday" => $mysqlWeekday,
+            ]);
+            return $statement->fetch(PDO::FETCH_ASSOC)["total"] / 100;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getMonthTransactions($month, $userId, $type) {
+        $conn = Connection::getConnection();
+        $sql = "SELECT SUM(IF(tipo = :type, m.valor, 0)) as total FROM movimentacao m where id_usuario = :id AND MONTH(m.data) = :month";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":id" => $userId,
+                ":type" => $type,
+                ":month" => $month,
+            ]);
+            return $statement->fetch(PDO::FETCH_ASSOC)["total"] / 100;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getWeekTransactions($weekday, $userId, $type) {
+        $conn = Connection::getConnection();
+        $sql = "SELECT SUM(IF(tipo = :type, m.valor, 0)) as total FROM movimentacao m where id_usuario = :id AND WEEKDAY(m.data) = :weekday AND WEEK(m.data) = WEEK(NOW())";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":id" => $userId,
+                ":type" => $type,
+                ":weekday" => $weekday,
+            ]);
+            return $statement->fetch(PDO::FETCH_ASSOC)["total"] / 100;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
 }

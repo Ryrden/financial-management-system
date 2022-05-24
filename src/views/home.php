@@ -37,126 +37,16 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
 <body>
     <div class="container-fluid bg-half">
         <!-- Modal -->
-        <div class="modal fade" id="editTransactionModal" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-dark">Editar uma movimentação</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form action="<?=BASE_URL."/transaction/update"?>" method="post">
-                        <div class="modal-body d-flex flex-column">
-                            <div class="form-group">
-                                <label class="text-dark" for="modalNome">Nome</label>
-                                <input type="text" class="form-control" id="modalNome" name="nome"
-                                    placeholder="Nome da movimentação">
-                            </div>
-                            <div class="form-group">
-                                <label class="text-dark" for="modalValor">Valor</label>
-                                <input type="number" step="0.01" class="form-control" id="modalValor" name="valor"
-                                    placeholder="00.00">
-                            </div>
-                            <div class="form-group">
-                                <label class="text-dark" for="modalTipo">Example select</label>
-                                <select class="form-control" name="tipo" id="modalTipo">
-                                    <option value="ganho" selected>Ganho</option>
-                                    <option value="gasto">Gasto</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="text-dark" for="modalData">Data</label>
-                                <input type="date" class="form-control" id="modalData" name="data">
-                            </div>
-                            <input type="hidden" name="id" value="" id="modalId">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="submit" class="btn btn-primary">Editar</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        <?php include "src/partials/editModal.php" ?>
         <div class="container-fluid py-3">
 
             <!-- NAVBAR -->
 
-            <div class="d-flex flex-row ">
-                <div class="col-md-3 d-flex justify-content-center align-items-center">
-                    <div id="logoSystem">
-                        <p class="text-center m-0">Sistema de Gestão financeira</p>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="d-flex flex-row align-items-center">
-                        <ul class="col-md-10 col-sm-9 nav">
-                            <li><a class="nav-link" href="#">Home</a></li>
-                            <li><a class="nav-link" href="<?=BASE_URL."/questionario"?>">Questionário</a></li>
-                            <li><a class="nav-link" href="#">Docs</a></li>
-                        </ul>
-                        <a href="<?=BASE_URL."/user/logout/"?>"
-                            class="d-flex justify-content-between col-md-2 col-sm-3 rounded-pill p-0 mb-1"
-                            id="userPicName">
-                            <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle">
-                            <p class="m-0 w-100 d-flex justify-content-center text-light">Logout</p>
-                        </a>
-                    </div>
-                    <hr>
-                </div>
-            </div>
+            <?php include "src/partials/navbar.php" ?>
             <!-- CONTENT -->
             <div class="d-flex flex-row justify-content-center pt-5">
                 <!-- Primeira Coluna -->
-                <div class="col-md-3">
-                    <div class="d-flex flex-column">
-                        <div class="d-flex flex-column align-items-center text-center offset-3">
-                            <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="border-dark m-3 rounded-circle"
-                                width="100px">
-                            <div class="d-flex flex-column mb-2">
-                                <span id="userName"><?=$_SESSION["user"]["nome"]?></span>
-                                <span>Perfil econômico</span>
-                            </div>
-                            <div id="moneyDiv"
-                                class="d-flex align-items-center rounded-pill moneyDiv justify-content-center p-2 text-dark">
-                                <i class='bi bi-coin'></i>
-                                <span id="userMoney">R$ 0,00</span>
-                            </div>
-                        </div>
-                        <div class="container d-flex flex-row justify-content-center mt-5">
-                            <div class="col-md">
-                                <a href="#">
-                                    <div class="d-flex flex-column align-items-center">
-                                        <img class="m-2" src="src/imgs/home.svg" width="52" height="52">
-                                        <span>Home</span>
-                                    </div>
-                                </a>
-                                <a href="#">
-                                    <div class="d-flex flex-column align-items-center">
-                                        <img class="m-2" src="src/imgs/pessoa.svg" width="52" height="52">
-                                        <span>Perfil</span>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-md">
-                                <a href="#">
-                                    <div class="d-flex flex-column align-items-center">
-                                        <img class="m-2" src="src/imgs/questionario.svg" width="52" height="52">
-                                        <span>Questionário</span>
-                                    </div>
-                                </a>
-                                <a href="<?=BASE_URL."/documentos"?>">
-                                    <div class="d-flex flex-column align-items-center">
-                                        <img class="m-2" src="src/imgs/documentos.svg" width="52" height="52">
-                                        <span>Documentos</span>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php include "src/partials/menu.php" ?>
                 <!-- Segunda coluna -->
                 <div class="col-md-9">
                     <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
@@ -169,10 +59,11 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                                 <?php } ?>
                                 <?php foreach ($transactions as $index => $transaction) { ?>
                                 <li class="container row mb-2 d-flex align-items-center">
-                                    <div class="container col-1 text-dark rounded py-2"><?=$transaction->formattedData?>
+                                    <div class="container col-1 text-dark rounded py-2">
+                                        <?=$transaction->formattedData?>
                                     </div>
                                     <div
-                                        class="container d-flex justify-content-between align-items-center col-9 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
+                                        class="container d-flex justify-content-between align-items-center col-7 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
                                         <p class="m-2"><?=$transaction->nome?></p>
                                         <div>
                                             <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
@@ -190,7 +81,7 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                                         </div>
                                     </div>
                                     <div
-                                        class="col-2 d-flex d-flex justify-content-center <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?> py-2 ">
+                                        class="col-3 d-flex d-flex justify-content-center <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?> py-2 ">
                                         <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->formattedValor ?>
                                     </div>
                                 </li>
