@@ -1,7 +1,7 @@
 <?php
 if (!isset($_SESSION))
     session_start();
-$transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
+$transactions = Transaction::list($_SESSION["user"]["codigo"], 5);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,51 +38,49 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
     <div class="container-fluid bg-half">
         <!-- Modal -->
         <?php include "src/partials/editModal.php" ?>
+        <!-- NAVBAR -->
+        <?php include "src/partials/navbar.php" ?>
         <div class="container-fluid py-3">
-
-            <!-- NAVBAR -->
-
-            <?php include "src/partials/navbar.php" ?>
-            <!-- CONTENT -->
-            <div class="d-flex flex-row justify-content-center pt-5">
-                <!-- Primeira Coluna -->
+            <!-- Primeira Coluna -->
+            <div class="row">
                 <?php include "src/partials/menu.php" ?>
-                <!-- Segunda coluna -->
-                <div class="col-md-9">
-                    <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
+
+                <div class="col-12 col-sm-8 col-lg-9">
+                    <div class="h2 mb-5 text-dark" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
                     <div class="primaryContent bg-white rounded-lg">
                         <div class="container py-3 gap-2">
-                            <h2 class="text-dark pb-3 pt-2">Movimentações</h2>
-                            <ul class="row">
+                            <h2 class="text-dark pb-3 pt-2">Últimar Movimentações</h2>
+                            <ul class="p-0">
                                 <?php if (count($transactions) == 0) { ?>
                                 <p class="text-dark">Não há transações</p>
                                 <?php } ?>
                                 <?php foreach ($transactions as $index => $transaction) { ?>
-                                <li class="container row mb-2 d-flex align-items-center">
-                                    <div class="container col-1 text-dark rounded py-2">
-                                        <?=$transaction->formattedData?>
-                                    </div>
-                                    <div
-                                        class="container d-flex justify-content-between align-items-center col-7 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
-                                        <p class="m-2"><?=$transaction->nome?></p>
-                                        <div>
-                                            <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
-                                                <img src="src/imgs/trash.svg" alt="Lixeira">
-                                            </a>
-                                            <button class="btnEdit" data-id="<?=$transaction->id?>"
-                                                data-data="<?=$transaction->data?>"
-                                                data-valor="<?=$transaction->valor?>"
-                                                data-tipo="<?=$transaction->tipo?>" data-nome="<?=$transaction->nome?>"
-                                                style="border: none; background: none;" type="button"
-                                                data-toggle="modal" data-target="#editTransactionModal">
-                                                <img src="src/imgs/edit.svg" alt="Editar">
-                                            </button>
+                                <li class="w-100 mb-2">
+                                    <div class="align-items-center">
+                                        <div class="d-flex justify-content-between align-items-center col-12 text-dark rounded py-2 <?= $transaction->tipo == "gasto" ? "outcome" : "income" ?>">
+                                            <div class="d-flex flex-column">
+                                                <p class="m-0"><?=$transaction->formattedData?></p>
+                                                <p class="m-2"><?=$transaction->nome?></p>
+                                                <p class="m-0 <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?>">
+                                                    <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->formattedValor ?>
+                                                </p>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row">
+                                                <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
+                                                    <img src="src/imgs/trash.svg" alt="Lixeira">
+                                                </a>
+                                                <button class="btnEdit" data-id="<?=$transaction->id?>"
+                                                    data-data="<?=$transaction->data?>"
+                                                    data-valor="<?=$transaction->valor?>"
+                                                    data-tipo="<?=$transaction->tipo?>" data-nome="<?=$transaction->nome?>"
+                                                    style="border: none; background: none;" type="button"
+                                                    data-toggle="modal" data-target="#editTransactionModal">
+                                                    <img src="src/imgs/edit.svg" alt="Editar">
+                                                </button>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div
-                                        class="col-3 d-flex d-flex justify-content-center <?=$transaction->tipo == "gasto" ? "text-danger" : "text-success"?> py-2 ">
-                                        <?= ($transaction->tipo == "gasto" ? "- " : "").$transaction->formattedValor ?>
+
                                     </div>
                                 </li>
                                 <?php } ?>
@@ -140,9 +138,9 @@ $transactions = Transaction::listAll($_SESSION["user"]["codigo"]);
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
+                <!-- Segunda coluna -->
 </body>
 
 </html>

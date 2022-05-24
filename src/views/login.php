@@ -1,7 +1,3 @@
-<?php
-    if (!isset($_SESSION))
-        session_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -16,7 +12,7 @@
 </head>
 
 <body>
-    <div class="bg-half bigger d-flex vh-100 justify-content-center align-items-center">
+    <div class="bg-half bg-bigger d-flex vh-100 justify-content-center align-items-center">
         <div class="bg-light container col-md-4 border shadow p-4 rounded-lg">
             <h1 class="text-dark">Login</h1>
             <p class="text-dark">Entre com sua conta para continuar</p>

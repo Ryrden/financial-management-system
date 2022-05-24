@@ -23,10 +23,10 @@ class Transaction
 
     }
 
-    public static function listAll($userId) {
+    public static function list($userId, $amountOfTransactions) {
         $conn = Connection::getConnection();
 
-        $sql = "SELECT * FROM movimentacao WHERE id_usuario= :id ORDER BY data DESC";
+        $sql = "SELECT * FROM movimentacao WHERE id_usuario= :id ORDER BY data DESC LIMIT $amountOfTransactions";
         try {
             $statement = $conn->prepare($sql);
             $statement->execute([
@@ -45,6 +45,7 @@ class Transaction
 
             return $results;
         } catch (PDOException $e) {
+            echo $e;
             return [];
         }
     }

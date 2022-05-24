@@ -7,16 +7,11 @@
 
     --CinzaClaro: #c7c7c7;
 
-
     --BackgroundPrimary: #644219;
     --BackgroundSecond: #bb7f36;
 
     --CorTexto: #e9e1d7;
-
-
-
 }
-
 
 body{
     color: var(--CorTexto);
@@ -34,7 +29,7 @@ body{
     background: linear-gradient(60deg, var(--BackgroundPrimary) 16.62%, var(--BackgroundSecond) 85.61%) no-repeat;
 }
 
-.bg-half.bigger::before {
+.bg-half.bg-bigger::before {
     height: 30em;
 }
 
