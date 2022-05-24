@@ -34,12 +34,12 @@ $charts = new Charts();
 <div class="container-fluid bg-half">
     <!-- NAVBAR -->
     <?php include "src/partials/navbar.php" ?>
-    <div class="container-fluid py-3">
+    <div class="container-fluid py-3 mt-sm-5">
 
         <div class="row">
             <?php include "src/partials/menu.php" ?>
             <div class="col-12 col-sm-8 col-lg-9">
-                <h1>Meu perfil</h1>
+                <h1 class="text-sm-light text-dark">Meu perfil</h1>
                 <div class="row mt-4">
                     <div class="d-flex flex-column align-items-center justify-content-center col-5 primaryContent bg-white rounded-lg mr-4">
                         <?php if ($_SESSION["user"]["nomePerfil"]) { ?>

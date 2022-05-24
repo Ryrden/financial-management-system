@@ -2,6 +2,9 @@
 
 class Transaction
 {
+
+    private $pageSize = 3;
+
     public function insert($date, $value, $name, $type, $userId) {
         $conn = Connection::getConnection();
 
@@ -23,10 +26,11 @@ class Transaction
 
     }
 
-    public static function list($userId, $amountOfTransactions) {
+    public function list($userId, $page = 1) {
         $conn = Connection::getConnection();
 
-        $sql = "SELECT * FROM movimentacao WHERE id_usuario= :id ORDER BY data DESC LIMIT $amountOfTransactions";
+        $offset = ($page - 1) * $this->pageSize;
+        $sql = "SELECT * FROM movimentacao WHERE id_usuario= :id ORDER BY data DESC LIMIT $this->pageSize OFFSET $offset";
         try {
             $statement = $conn->prepare($sql);
             $statement->execute([
@@ -48,6 +52,23 @@ class Transaction
             echo $e;
             return [];
         }
+    }
+
+    public function getMaxPages($userId) {
+
+        $conn = Connection::getConnection();
+        $sql = "SELECT COUNT(*) as total FROM movimentacao WHERE id_usuario = :id";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":id" => $userId
+            ]);
+            return ceil($statement->fetch(PDO::FETCH_ASSOC)["total"] / $this->pageSize);
+        } catch (Exception $e) {
+            return 0;
+        }
+
     }
 
     public function get($id) {

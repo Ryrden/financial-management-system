@@ -19,14 +19,14 @@ $questions = QuestionarioController::listQuestions();
     <div class="container-fluid bg-half">
         <!-- NAVBAR -->
         <?php include "src/partials/navbar.php" ?>
-        <div class="container-fluid py-3">
+        <div class="container-fluid py-3 mt-sm-5">
 
             <div class="row">
                 <!-- Primeira Coluna -->
                 <?php include "src/partials/menu.php" ?>
                 <!-- Segunda coluna -->
-                <div class="col-12 col-sm-8 col-lg-9">
-                    <div class="h2 mb-5" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
+                <div class="col-12 col-sm-8 col-lg-9 mt-sm-5">
+                    <div class="h2 mb-5 text-sm-light text-dark" id="subTitle">Questionário de perfil</div>
                     <div class="primaryContent p-3 text-dark bg-white rounded-lg">
                         <h2 class="pb-2 border-bottom border-dark">Perguntas</h2>
 

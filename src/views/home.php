@@ -1,7 +1,10 @@
 <?php
 if (!isset($_SESSION))
     session_start();
-$transactions = Transaction::list($_SESSION["user"]["codigo"], 5);
+$model = new Transaction();
+$transactions = $model->list($_SESSION["user"]["codigo"], $_GET['page'] ?? 1);
+$maxPages = $model->getMaxPages($_SESSION["user"]["codigo"]);
+$currentPage = $_GET["page"] ?? 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,13 +43,13 @@ $transactions = Transaction::list($_SESSION["user"]["codigo"], 5);
         <?php include "src/partials/editModal.php" ?>
         <!-- NAVBAR -->
         <?php include "src/partials/navbar.php" ?>
-        <div class="container-fluid py-3">
+        <div class="container-fluid py-3 mt-sm-5">
             <!-- Primeira Coluna -->
             <div class="row">
                 <?php include "src/partials/menu.php" ?>
 
                 <div class="col-12 col-sm-8 col-lg-9">
-                    <div class="h2 mb-5 text-dark" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
+                    <div class="h2 mb-5 text-dark text-sm-light" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
                     <div class="primaryContent bg-white rounded-lg">
                         <div class="container py-3 gap-2">
                             <h2 class="text-dark pb-3 pt-2">Últimar Movimentações</h2>
@@ -85,6 +88,33 @@ $transactions = Transaction::list($_SESSION["user"]["codigo"], 5);
                                 </li>
                                 <?php } ?>
                             </ul>
+                            <div class="m-auto">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center">
+
+                                        <?php if (isset($currentPage) && $currentPage > 1) { ?>
+                                            <li class="page-item"><a class="page-link" href="?page=<?= $_GET["page"] - 1 ?>">Previous</a></li>
+                                            <li class="page-item"><a href="?page=1" class="page-link">1</a></li>
+                                            <li class="page-item"><div class="page-link">...</div></li>
+                                        <?php }?>
+
+                                        <?php for ($i = $currentPage - 3; $i < $maxPages; $i++) { ?>
+                                                <?php if ($i > 1) { ?>
+                                                    <li class="page-item <?= $currentPage == $i ? "active" : "" ?>"><a class="page-link" href="?page=<?=$i?>"><?= $i ?></a></li>
+                                                <?php }?>
+                                        <?php }?>
+
+                                        <?php if ($currentPage != $maxPages) { ?>
+                                            <li class="page-item"><div class="page-link">...</div></li>
+                                            <li class="page-item"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
+                                        <?php }?>
+
+                                        <?php if (isset($currentPage) && $currentPage < $maxPages) { ?>
+                                            <li class="page-item"><a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a></li>
+                                        <?php }?>
+                                    </ul>
+                                </nav>
+                            </div>
                         </div>
                     </div>
                     <script>
