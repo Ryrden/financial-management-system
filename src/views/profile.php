@@ -45,9 +45,13 @@ $charts = new Charts();
                 <h1>Meu perfil</h1>
                 <div class="row mt-4">
                     <div class="d-flex flex-column align-items-center justify-content-center col-5 primaryContent bg-white rounded-lg mr-4">
+                        <?php if ($_SESSION["user"]["nomePerfil"]) { ?>
                         <h2 class="my-3 text-dark text-center"><?= $_SESSION["user"]["nomePerfil"] ?></h2>
                         <img class="my-3" width="100px" src="src/imgs/<?=$_SESSION["user"]["perfilImagem"] ?>.png" alt="<?= $_SESSION["user"]["perfilImagem"] ?>">
                         <p class="text-center text-dark"><?= $_SESSION["user"]["perfilDescricao"]?></p>
+                        <?php } else { ?>
+                            <p class="text-center text-dark">Responda o questionário para definir seu perfil</p>
+                        <?php } ?>
                     </div>
                     <div class="col d-flex flex-column bg-white">
                         <h2 class="text-dark text-center">Gastos e ganhos mensais</h2>

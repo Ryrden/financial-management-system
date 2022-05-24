@@ -9,7 +9,7 @@ class User
 
         $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
 
-        if (!$userWithEmail) {
+        if (!$userWithEmail["codigo"]) {
             try {
                 $statement = $conn->prepare($sql);
                 $statement->execute([
@@ -31,13 +31,12 @@ class User
     public static function findUserWithEmail($email) {
         $conn = Connection::getConnection();
 
-        $sql = "SELECT u.*, p.tipo as nomePerfil, p.descricao as perfilDescricao, p.image as perfilImagem, SUM(IF(m.tipo = 'ganho', m.valor, -m.valor)) as renda FROM usuario u INNER JOIN perfil p on u.id_perfil = p.id INNER JOIN movimentacao m on u.codigo = m.id_usuario WHERE email = :email";
+        $sql = "SELECT u.*, p.tipo as nomePerfil, p.descricao as perfilDescricao, p.image as perfilImagem, SUM(IF(m.tipo = 'ganho', m.valor, -m.valor)) as renda FROM usuario u LEFT OUTER JOIN perfil p on u.id_perfil = p.id  LEFT OUTER JOIN movimentacao m on u.codigo = m.id_usuario WHERE email = :email";
         try {
             $statement = $conn->prepare($sql);
             $statement->execute([
                 "email" => $email,
             ]);
-
             return $statement->fetch();
         } catch (PDOException $e) {
             throw new Exception("Erro ao encontrar usuário");
