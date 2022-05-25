@@ -30,7 +30,7 @@ $currentPage = $_GET["page"] ?? 1;
                 <?php include "src/partials/menu.php" ?>
 
                 <div class="col-12 col-sm-8 col-lg-9">
-                    <div class="h2 mb-5 text-dark text-sm-light" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></div>
+                    <h1 class="h2 mb-5 text-dark text-sm-light" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></h1>
                     <div class="primaryContent bg-white rounded-lg">
                         <div class="container py-3 gap-2">
                             <h2 class="text-dark pb-3 pt-2">Últimar Movimentações</h2>
@@ -81,7 +81,9 @@ $currentPage = $_GET["page"] ?? 1;
                                         <?php }?>
 
                                         <li class="page-item <?= $currentPage == 1 ? "active" : "" ?>"><a href="?page=1" class="page-link">1</a></li>
-                                        <li class="page-item"><div class="page-link">...</div></li>
+                                        <?php if (isset($currentPage) && $currentPage > 1) { ?>
+                                            <li class="page-item"><div class="page-link">...</div></li>
+                                        <?php }?>
 
                                         <?php for ($i = $currentPage - 3; $i < $maxPages; $i++) { ?>
                                                 <?php if ($i > 1) { ?>
@@ -89,8 +91,13 @@ $currentPage = $_GET["page"] ?? 1;
                                                 <?php }?>
                                         <?php }?>
 
-                                        <li class="page-item"><div class="page-link">...</div></li>
-                                        <li class="page-item <?= $currentPage == $maxPages ? "active" : "" ?>"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
+                                        <?php if ($currentPage != $maxPages) { ?>
+                                            <li class="page-item"><div class="page-link">...</div></li>
+                                        <?php } ?>
+                                        <?php if ($currentPage != 1) { ?>
+                                            <li class="page-item <?= $currentPage == $maxPages ? "active" : "" ?>"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
+                                        <?php } ?>
+
 
                                         <?php if (isset($currentPage) && $currentPage < $maxPages) { ?>
                                             <li class="page-item"><a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a></li>
