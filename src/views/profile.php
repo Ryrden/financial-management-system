@@ -35,13 +35,13 @@ $charts = new Charts();
     <!-- NAVBAR -->
     <?php include "src/partials/navbar.php" ?>
     <div class="container-fluid py-3 mt-sm-5">
-
         <div class="row">
-            <?php include "src/partials/menu.php" ?>
-            <div class="col-12 col-sm-8 col-lg-9">
-                <h1 class="text-sm-light text-dark">Meu perfil</h1>
-                <div class="row mt-4">
-                    <div class="d-flex flex-column align-items-center justify-content-center col-5 primaryContent bg-white rounded-lg mr-4">
+        <?php include "src/partials/menu.php" ?>
+        <div class="col-12 col-sm-8 col-lg-9">
+            <h1 class="text-sm-light text-dark">Meu perfil</h1>
+            <div class="container mt-4">
+                <div class="row justify-content-around">
+                    <div class="col col-sm-5 d-flex flex-column align-items-center primaryContent bg-white rounded-lg">
                         <?php if ($_SESSION["user"]["nomePerfil"]) { ?>
                         <h2 class="my-3 text-dark text-center"><?= $_SESSION["user"]["nomePerfil"] ?></h2>
                         <img class="my-3" width="100px" src="src/imgs/<?=$_SESSION["user"]["perfilImagem"] ?>.png" alt="<?= $_SESSION["user"]["perfilImagem"] ?>">
@@ -50,7 +50,7 @@ $charts = new Charts();
                             <p class="text-center text-dark">Responda o questionário para definir seu perfil</p>
                         <?php } ?>
                     </div>
-                    <div class="col d-flex flex-column bg-white">
+                    <div class="col col-sm-5 d-flex flex-column rounded bg-white">
                         <h2 class="text-dark text-center">Gastos e ganhos mensais</h2>
                         <div id="weekInfo" class="mt-2 mb-4 mx-auto button-group">
                             <button data-chart="weeklyGains" class="btn btn-secondary selected">Ganhos</button>
@@ -59,25 +59,25 @@ $charts = new Charts();
                         <div id="pieChartContainer" style="height: 300px; width: 100%;"></div>
                     </div>
                 </div>
-                <div class="row d-flex flex-column p-3 my-3 rounded bg-white">
-                    <h2 class=" text-dark text-center">Gastos e ganhos mensais</h2>
-                    <div id="transactions" class="my-2 mx-auto button-group">
-                        <button data-chart="weeklyTransactions" class="btn btn-secondary selected">Semanal</button>
-                        <button data-chart="monthlyTransactions" class="btn btn-secondary">Mensal</button>
-                    </div>
-                    <div id="lineChartConteiner" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div class="row d-flex flex-column p-3 my-3 rounded bg-white">
+                <h2 class=" text-dark text-center">Gastos e ganhos mensais</h2>
+                <div id="transactions" class="my-2 mx-auto button-group">
+                    <button data-chart="weeklyTransactions" class="btn btn-secondary selected">Semanal</button>
+                    <button data-chart="monthlyTransactions" class="btn btn-secondary">Mensal</button>
                 </div>
-                <div class="row d-flex flex-column p-3 my-3 rounded bg-white">
-                    <h2 class=" text-dark text-center">Lucros</h2>
-                    <div id="profits" class="my-2 mx-auto button-group">
-                        <button data-chart="weekProfit" class="btn btn-secondary selected">Semanal</button>
-                        <button data-chart="monthProfit" class="btn btn-secondary">Mensal</button>
-                    </div>
-                    <div id="barChartContainer" style="height: 300px; width: 100%;"></div>
-
+                <div id="lineChartConteiner" style="height: 300px; width: 100%;"></div>
+            </div>
+            <div class="row d-flex flex-column p-3 my-3 rounded bg-white">
+                <h2 class=" text-dark text-center">Lucros</h2>
+                <div id="profits" class="my-2 mx-auto button-group">
+                    <button data-chart="weekProfit" class="btn btn-secondary selected">Semanal</button>
+                    <button data-chart="monthProfit" class="btn btn-secondary">Mensal</button>
                 </div>
+                <div id="barChartContainer" style="height: 300px; width: 100%;"></div>
 
             </div>
+        </div>
         </div>
 
     <script>
