@@ -97,9 +97,10 @@ $currentPage = $_GET["page"] ?? 1;
 
                                         <?php if (isset($currentPage) && $currentPage > 1) { ?>
                                             <li class="page-item"><a class="page-link" href="?page=<?= $_GET["page"] - 1 ?>">Previous</a></li>
-                                            <li class="page-item"><a href="?page=1" class="page-link">1</a></li>
-                                            <li class="page-item"><div class="page-link">...</div></li>
                                         <?php }?>
+
+                                        <li class="page-item <?= $currentPage == 1 ? "active" : "" ?>"><a href="?page=1" class="page-link">1</a></li>
+                                        <li class="page-item"><div class="page-link">...</div></li>
 
                                         <?php for ($i = $currentPage - 3; $i < $maxPages; $i++) { ?>
                                                 <?php if ($i > 1) { ?>
@@ -107,10 +108,8 @@ $currentPage = $_GET["page"] ?? 1;
                                                 <?php }?>
                                         <?php }?>
 
-                                        <?php if ($currentPage != $maxPages) { ?>
-                                            <li class="page-item"><div class="page-link">...</div></li>
-                                            <li class="page-item"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
-                                        <?php }?>
+                                        <li class="page-item"><div class="page-link">...</div></li>
+                                        <li class="page-item <?= $currentPage == $maxPages ? "active" : "" ?>"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
 
                                         <?php if (isset($currentPage) && $currentPage < $maxPages) { ?>
                                             <li class="page-item"><a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a></li>
