@@ -29,12 +29,12 @@
                 </div>
                 <div class="form-group">
                     <label for="password" class="text-dark">Senha</label>
-                    <input name="password" type="password" class="form-control" id="password"
+                    <input name="password" minlength="6" type="password" class="form-control" id="password"
                         placeholder="Pelo menos 6 caracteres">
                 </div>
                 <div class="form-group">
-                    <label for="password" class="text-dark">Confirmar Senha</label>
-                    <input type="password" class="form-control" id="passwordConfirm">
+                    <label for="passwordConfirm" class="text-dark">Confirmar Senha</label>
+                    <input type="password" minlength="6" class="form-control" id="passwordConfirm">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill text-white">Entrar</button>
                 <p>Já possui conta? <a href="<?php echo BASE_URL ?>/login">Fazer login</a></p>

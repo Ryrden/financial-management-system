@@ -12,28 +12,14 @@ if (!isset($_SESSION))
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js" async></script>
 
     <?php include "src/partials/links.php" ?>
-    <style>
-        .selected {
-            background-color: var(--MarromEscuro);
-            border-color: var(--MarromEscuro);
-        }
-        button.selected:hover,
-        button.selected:active,
-        button.selected:enabled {
-            background-color: var(--MarromIdeal);
-            border-color: var(--MarromIdeal);
-            outline-color: var(--MarromIdeal);
-        }
-
-    </style>
-    <title>Perfil | Sistema de Gestão Financeira</title>
+    <title>Documentos | Sistema de Gestão Financeira</title>
 </head>
 
 <body>
 <div class="container-fluid bg-half">
     <?php include "src/partials/navbar.php" ?>
 
-    <div class="container-fluid py-3">
+    <div class="container-fluid py-3 mt-sm-5">
 
         <div class="row">
             <?php include "src/partials/menu.php" ?>
