@@ -28,7 +28,8 @@ class TransactionController
         }
     }
 
-    public function delete($id) {
+    public function delete() {
+        $id = $_POST["id"];
         UserController::mustBeLoggedIn();
         if (!isset($_SESSION))
             session_start();

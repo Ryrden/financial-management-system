@@ -69,9 +69,12 @@ $currentPage = $_GET["page"] ?? 1;
                                                 </p>
                                             </div>
                                             <div class="d-flex flex-column flex-sm-row">
-                                                <a href="<?=BASE_URL."/transaction/delete?id=".$transaction->id?>">
-                                                    <img src="src/imgs/trash.svg" alt="Lixeira">
-                                                </a>
+                                                <form method="post" id="deleteForm" action="<?=BASE_URL."/transaction/delete"?>">
+                                                    <input name="id" type="hidden" value="<?= $transaction->id ?>">
+                                                    <button type="submit" style="border: none; background: none">
+                                                        <img src="src/imgs/trash.svg" alt="Lixeira">
+                                                    </button>
+                                                </form>
                                                 <button class="btnEdit" data-id="<?=$transaction->id?>"
                                                     data-data="<?=$transaction->data?>"
                                                     data-valor="<?=$transaction->valor?>"
@@ -137,6 +140,13 @@ $currentPage = $_GET["page"] ?? 1;
                                     element.setAttribute("value", btn.dataset[field]);
                             })
                         })
+                    })
+
+                    const deleteForm = document.getElementById("deleteForm")
+                    deleteForm.addEventListener("submit", (e) => {
+                        e.preventDefault();
+                        if (window.confirm("Certeza que deseja deletar a transação?"))
+                            deleteForm.submit();
                     })
                     </script>
                     <div class="primaryContent bg-white rounded-lg mt-4">
