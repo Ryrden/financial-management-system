@@ -50,7 +50,7 @@ $currentPage = $_GET["page"] ?? 1;
                                                 </p>
                                             </div>
                                             <div class="d-flex flex-column flex-sm-row">
-                                                <form method="post" id="deleteForm" action="<?=BASE_URL."/transaction/delete"?>">
+                                                <form method="post" class="deleteForm" action="<?=BASE_URL."/transaction/delete"?>">
                                                     <input name="id" type="hidden" value="<?= $transaction->id ?>">
                                                     <button type="submit" style="border: none; background: none">
                                                         <img src="src/imgs/trash.svg" alt="Lixeira">
@@ -122,11 +122,12 @@ $currentPage = $_GET["page"] ?? 1;
                         })
                     })
 
-                    const deleteForm = document.getElementById("deleteForm")
-                    deleteForm.addEventListener("submit", (e) => {
-                        e.preventDefault();
-                        if (window.confirm("Certeza que deseja deletar a transação?"))
-                            deleteForm.submit();
+                    Array.from(document.getElementsByClassName("deleteForm")).forEach(form => {
+                        form.addEventListener("submit", (e) => {
+                            e.preventDefault();
+                            if (window.confirm("Certeza que deseja deletar a transação?"))
+                                form.submit();
+                        })
                     })
                     </script>
                     <div class="primaryContent bg-white rounded-lg mt-4">
