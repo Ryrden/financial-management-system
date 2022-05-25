@@ -5,6 +5,7 @@ $model = new Transaction();
 $transactions = $model->list($_SESSION["user"]["codigo"], $_GET['page'] ?? 1);
 $maxPages = $model->getMaxPages($_SESSION["user"]["codigo"]);
 $currentPage = $_GET["page"] ?? 1;
+$pagePreviewOffset = 1;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,6 +74,7 @@ $currentPage = $_GET["page"] ?? 1;
                                 <?php } ?>
                             </ul>
                             <div>
+                                <?php if ($transactions) { ?>
                                 <nav aria-label="Page navigation example">
                                     <ul class="pagination justify-content-center">
 
@@ -81,29 +83,30 @@ $currentPage = $_GET["page"] ?? 1;
                                         <?php }?>
 
                                         <li class="page-item <?= $currentPage == 1 ? "active" : "" ?>"><a href="?page=1" class="page-link">1</a></li>
-                                        <?php if (isset($currentPage) && $currentPage > 1) { ?>
+                                        <?php if ($currentPage > 1 && $currentPage - 2 * $pagePreviewOffset > 1) { ?>
                                             <li class="page-item"><div class="page-link">...</div></li>
                                         <?php }?>
 
-                                        <?php for ($i = $currentPage - 3; $i < $maxPages; $i++) { ?>
+                                        <?php for ($i = $currentPage - $pagePreviewOffset; $i <= $currentPage + $pagePreviewOffset && $i < $maxPages; $i++) { ?>
                                                 <?php if ($i > 1) { ?>
                                                     <li class="page-item <?= $currentPage == $i ? "active" : "" ?>"><a class="page-link" href="?page=<?=$i?>"><?= $i ?></a></li>
                                                 <?php }?>
                                         <?php }?>
 
-                                        <?php if ($currentPage != $maxPages) { ?>
+                                        <?php if ($currentPage != $maxPages && $currentPage + 2 * $pagePreviewOffset < $maxPages) { ?>
                                             <li class="page-item"><div class="page-link">...</div></li>
                                         <?php } ?>
+
                                         <?php if ($currentPage != 1) { ?>
-                                            <li class="page-item <?= $currentPage == $maxPages ? "active" : "" ?>"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
+                                        <li class="page-item <?= $currentPage == $maxPages ? "active" : "" ?>"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
                                         <?php } ?>
 
-
-                                        <?php if (isset($currentPage) && $currentPage < $maxPages) { ?>
+                                        <?php if ($currentPage < $maxPages) { ?>
                                             <li class="page-item"><a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a></li>
                                         <?php }?>
                                     </ul>
                                 </nav>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
