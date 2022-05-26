@@ -14,8 +14,9 @@ class Upload
             Configuration::instance([
                 'cloud' => [
                     'cloud_name' => 'davifelix',
-                    'api_key' => 'SECRET',
-                    'api_secret' => 'SECRET'],
+                    'api_key' => $_ENV["CLOUDNARY_API_KEY"],
+                    'api_secret' =>  $_ENV['CLOUDNARY_API_SECRET']
+                ],
                 'url' => [
                     'secure' => true
                 ]

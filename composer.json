@@ -20,6 +20,7 @@
       "ext-pdo": "*",
       "ext-intl": "*",
       "ext-json": "*",
-      "cloudinary/cloudinary_php": "^2"
+      "cloudinary/cloudinary_php": "^2",
+        "vlucas/phpdotenv": "^5.4"
     }
 }
