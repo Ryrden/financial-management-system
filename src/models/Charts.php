@@ -1,7 +1,7 @@
 <?php
 class Charts
 {
-    private function yearMoneyService($function){
+    private function getMonthPoints($function){
         $dataPoints = array();
         $months = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
                         "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
@@ -17,7 +17,7 @@ class Charts
         return $dataPoints;
     }
 
-    private function getWeeklyResults($function) {
+    private function getWeekPoints($function) {
         $points = array();
         $userId = $_SESSION["user"]["codigo"];
         $weekdays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
@@ -29,43 +29,43 @@ class Charts
         return $points;
     }
 
-    public function getWeekDayIncomePoints() {
-        return $this->getWeeklyResults(function($i, $userId) {
+    public function getWeekProfit() {
+        return $this->getWeekPoints(function($i, $userId) {
             $transactionsModel = new Transaction();
             return $transactionsModel->getCurrentWeekIncome($i, $userId);
         });
     }
 
-    public function getWeeklyGains() {
-        return $this->getWeeklyResults(function($i, $userId) {
+    public function getWeekGains() {
+        return $this->getWeekPoints(function($i, $userId) {
             $transactionsModel = new Transaction();
             return $transactionsModel->getWeekTransactions($i, $userId,"ganho");
         });
     }
 
-    public function getWeeklySpends() {
-        return $this->getWeeklyResults(function($i, $userId) {
+    public function getWeekSpends() {
+        return $this->getWeekPoints(function($i, $userId) {
             $transactionsModel = new Transaction();
             return $transactionsModel->getWeekTransactions($i, $userId,"gasto");
         });
     }
 
-    public function getMonthIncomePoints() {
-        return $this->yearMoneyService(function($i, $userId) {
+    public function getMonthProfit() {
+        return $this->getMonthPoints(function($i, $userId) {
             $transactionsModel = new Transaction();
             return $transactionsModel->getByMonth($i, $userId);
         });
     }
 
-    public function getMonthlyGains() {
-        return $this->yearMoneyService(function($i, $userId) {
+    public function getMonthGains() {
+        return $this->getMonthPoints(function($i, $userId) {
             $transactionsModel = new Transaction();
             return $transactionsModel->getMonthTransactions($i, $userId,"ganho");
         });
     }
 
-    public function getMonthlySpends() {
-        return $this->yearMoneyService(function($i, $userId) {
+    public function getMonthSpends() {
+        return $this->getMonthPoints(function($i, $userId) {
             $transactionsModel = new Transaction();
             return $transactionsModel->getMonthTransactions($i, $userId,"gasto");
         });
