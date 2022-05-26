@@ -16,7 +16,7 @@
                         <a href="<?=BASE_URL."/user/logout/"?>"
                            class="d-flex justify-content-between col-md-3 col-sm-3 rounded-pill p-0 mb-1"
                            id="userPicName">
-                            <img src="https://i.imgur.com/e6BoP1f.jpg" alt="..." class="rounded-circle">
+                            <img src="<?= $_SESSION["user"]["imagem"] ?>" alt="..." class="rounded-circle">
                             <p class="m-0 w-100 d-flex justify-content-center text-light">Logout</p>
                         </a>
                     </div>
