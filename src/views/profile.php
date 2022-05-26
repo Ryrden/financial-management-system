@@ -38,13 +38,13 @@ $charts = new Charts();
         <div class="row">
         <?php include "src/partials/menu.php" ?>
         <div class="col-12 col-sm-8 col-lg-9">
-            <h1 class="text-sm-light text-dark">Meu perfil</h1>
+            <h1 class="text-sm-light text-dark mb-5">Meu perfil</h1>
             <div class="container mt-4">
                 <div class="row justify-content-around">
                     <div class="col col-sm-5 d-flex flex-column align-items-center primaryContent bg-white rounded-lg">
                         <?php if ($_SESSION["user"]["nomePerfil"]) { ?>
                         <h2 class="my-3 text-dark text-center"><?= $_SESSION["user"]["nomePerfil"] ?></h2>
-                        <img class="my-3" width="100px" src="src/imgs/<?=$_SESSION["user"]["perfilImagem"] ?>.png" alt="<?= $_SESSION["user"]["perfilImagem"] ?>">
+                        <img class="my-3" width="100px" src="<?=$_SESSION["user"]["perfilImagem"] ?>" alt="<?= $_SESSION["user"]["perfilImagem"] ?>">
                         <p class="text-center text-dark"><?= $_SESSION["user"]["perfilDescricao"]?></p>
                         <?php } else { ?>
                             <p class="text-center text-dark">Responda o questionário para definir seu perfil</p>

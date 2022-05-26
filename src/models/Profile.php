@@ -25,18 +25,4 @@ class Profile
             return false;
         }
     }
-
-    public function getProfile($id) {
-        $conn = Connection::getConnection();
-        $sql = "SELECT * FROM perfil WHERE id = :id";
-        try {
-            $statement = $conn->prepare($sql);
-            $statement->execute([
-                ":id" => $id
-            ]);
-            return $statement->fetch(PDO::FETCH_ASSOC);
-        } catch (Exception $e) {
-            return false;
-        }
-    }
 }

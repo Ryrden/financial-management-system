@@ -26,7 +26,7 @@ $questions = QuestionarioController::listQuestions();
                 <?php include "src/partials/menu.php" ?>
                 <!-- Segunda coluna -->
                 <div class="col-12 col-sm-8 col-lg-9">
-                    <div class="h2 mb-5 text-sm-light text-dark" id="subTitle">Questionário de perfil</div>
+                    <h1 class="h2 mb-5 text-sm-light text-dark" id="subTitle">Questionário de perfil</h1>
                     <div class="primaryContent p-3 text-dark bg-white rounded-lg">
                         <h2 class="pb-2 border-bottom border-dark">Perguntas</h2>
 

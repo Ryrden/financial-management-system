@@ -44,4 +44,24 @@ class User
             throw new Exception("Unhandled server error");
         }
     }
+
+    public function update($userId, $nome, $image, $password) {
+        $conn = Connection::getConnection();
+        $sql = "UPDATE usuario SET nome = :nome, imagem = :image, senha = :password WHERE codigo = :userId";
+
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":userId" => $userId,
+                ":nome" => $nome,
+                ":image" => $image,
+                ":password" => $password
+            ]);
+
+            return true;
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
 }

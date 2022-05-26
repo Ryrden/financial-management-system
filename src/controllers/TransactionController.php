@@ -19,7 +19,7 @@ class TransactionController
         try {
             $inserted = $transactionsModel->insert($date, $value, $name, $type, $userId);
             if ($inserted)
-                echo "<script>alert('Transação adicionada com sucesso'); location.href='".BASE_URL."'</script>";
+                echo "<script>location.href='".BASE_URL."'</script>";
             else
                 echo "<script>alert('Erro ao inserir transação'); location.href=".BASE_URL."</script>";
 
@@ -42,11 +42,11 @@ class TransactionController
             else
                 $deleted = false;
 
-            if ($deleted) {
-                echo "<script>alert('Movimentação deletada com sucesso'); location.href='".BASE_URL."'</script>";
-            } else {
+            if ($deleted)
+                echo "<script>location.href='".BASE_URL."'</script>";
+            else
                 echo "<script>alert('Erro ao deletar movimentação'); location.href='".BASE_URL."'</script>";
-            }
+
         } catch (Exception $e) {
             echo "<script>alert('Unhandled server error'); location.href='".BASE_URL."'</script>";
         }
@@ -74,11 +74,11 @@ class TransactionController
                 $updated = false;
 
 
-            if ($updated) {
-                echo "<script>alert('Update completo'); location.href='".BASE_URL."'</script>";
-            } else {
+            if ($updated)
+                echo "<script>location.href='".BASE_URL."'</script>";
+            else
                 echo "<script>alert('Erro no update'); location.href='".BASE_URL."'</script>";
-            }
+
         } catch (Exception $e) {
             echo "<script>alert('Unhandled server error'); location.href='".BASE_URL."'</script>";
         }

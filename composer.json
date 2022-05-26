@@ -19,6 +19,7 @@
     "require": {
       "ext-pdo": "*",
       "ext-intl": "*",
-        "ext-json": "*"
+      "ext-json": "*",
+      "cloudinary/cloudinary_php": "^2"
     }
 }

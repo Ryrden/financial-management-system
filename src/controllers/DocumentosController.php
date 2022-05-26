@@ -6,4 +6,8 @@ class DocumentosController
         UserController::mustBeLoggedIn();
         require_once "src/views/documentos.php";
     }
+
+    public function generate() {
+
+    }
 }

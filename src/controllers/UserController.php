@@ -50,7 +50,7 @@ class UserController
         }
     }
 
-    public static function updateUser($email) {
+    public static function refreshUser($email) {
         try {
             if (!isset($_SESSION))
                 session_start();
@@ -58,6 +58,32 @@ class UserController
             $_SESSION['user'] = $user;
         } catch (Exception $e) {
             echo "<script> location.href='".BASE_URL."/login"."'; </script>";
+        }
+    }
+
+    public function update() {
+        try {
+            self::mustBeLoggedIn();
+            $model = new User();
+            $id = $_SESSION["user"]["codigo"];
+            $nome = $_POST["nome"];
+
+            $imageName = $_FILES["image"]["tmp_name"];
+            $imageSize = $_FILES["image"]["size"];
+            if (!empty($imageName)) {
+                $uploader = new Upload();
+                $response = $uploader->uploadImage($imageName, $imageSize);
+                if (!$response)
+                    throw new Exception("Error uploading image");
+                $image = $response["url"];
+            } else {
+                $image = $_SESSION["user"]["imagem"];
+            }
+            $password = $_POST["password"];
+            $model->update($id, $nome, $image, empty($password) ? $_SESSION["user"]["senha"] : $password);
+            echo "<script>location.href='".BASE_URL."/profile"."'</script>";
+        } catch (Exception $e) {
+            echo "<script>alert('Erro ao atualizar perfil'); location.href='".BASE_URL."'</script>";
         }
     }
 }
