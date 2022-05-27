@@ -6,9 +6,10 @@ class UserController
         $name = $_POST['name'];
         $email= $_POST['email'];
         $password = $_POST['password'];
+        $image = 'https://res.cloudinary.com/davifelix/image/upload/v1653580469/user_kyeqca.png';
 
         try {
-            User::insert($name, $email, $password);
+            User::insert($name, $email, $password, $image);
             echo "<script>alert('Usuário cadastrado com sucesso!'); location.href='".BASE_URL."/login"."'; </script>";
 
         } catch (Exception $e) {

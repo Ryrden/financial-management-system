@@ -26,31 +26,35 @@ if (!isset($_SESSION))
                 <h1 class="text-dark text-sm-light mb-5">Gerar documentos</h1>
                 <div class="container bg-white p-3 rounded">
                     <h2 class="text-dark my-3">Preencha os dados do seu extrado</h2>
-                    <form action="<?= BASE_URL."/documentos/generate" ?>" method="post">
+                    <form action="<?= BASE_URL."/documentos/generate" ?>" method="get">
                         <div class="container">
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
                                         <label class="text-dark" for="dataInicio">Data de início</label>
-                                        <input class="form-control" type="date" name="dataInicio" id="dataInicio">
+                                        <input required class="form-control" type="date" name="dataInicio" id="dataInicio">
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
                                         <label class="text-dark"  for="dataFim">Data final</label>
-                                        <input class="form-control" type="date" name="dataFim" id="dataFim">
+                                        <input required class="form-control" type="date" name="dataFim" id="dataFim">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label class="text-dark" for="tipoExtrato">Tipo de extrato</label>
-                                        <select id="tipoExtrato" name="tipoExtrado"  type="text" class="form-control">
-                                            <option value="gastos">Gastos</option>
-                                            <option value="ganhos">Gastos</option>
+                                        <label class="text-dark" for="tipo">Tipo de extrato</label>
+                                        <select id="tipo" name="tipo"  class="form-control">
+                                            <option value="gasto" selected>Gastos</option>
+                                            <option value="ganho">Ganhos</option>
                                             <option value="gastos_ganhos">Gastos e ganhos</option>
                                         </select>
+                                    </div>
+                                    <div class="form-group d-flex align-items-center">
+                                        <label class="text-dark m-0" for="grafico">Mostrar gráfico</label>
+                                        <input class="ml-3" id="grafico" name="grafico" type="checkbox">
                                     </div>
                                 </div>
                             </div>

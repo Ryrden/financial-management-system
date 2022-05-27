@@ -41,7 +41,7 @@ $charts = new Charts();
             <h1 class="text-sm-light text-dark mb-5">Meu perfil</h1>
             <div class="container mt-4">
                 <div class="row justify-content-around">
-                    <div class="col col-sm-5 d-flex flex-column align-items-center primaryContent bg-white rounded-lg mb-2 mb-sm-0">
+                    <div class="col col-sm-5 d-flex flex-column align-items-center justify-content-center primaryContent bg-white rounded-lg mb-2 mb-sm-0">
                         <?php if ($_SESSION["user"]["nomePerfil"]) { ?>
                         <h2 class="my-3 text-dark text-center"><?= $_SESSION["user"]["nomePerfil"] ?></h2>
                         <img class="my-3" width="100px" src="<?=$_SESSION["user"]["perfilImagem"] ?>" alt="<?= $_SESSION["user"]["perfilImagem"] ?>">
@@ -61,7 +61,7 @@ $charts = new Charts();
                 </div>
             </div>
             <div class="row d-flex flex-column p-3 my-3 rounded bg-white">
-                <h2 class=" text-dark text-center">Gastos e ganhos mensais</h2>
+                <h2 class=" text-dark text-center">Gastos e ganhos</h2>
                 <div id="transactions" class="my-2 mx-auto button-group">
                     <button data-chart="weeklyTransactions" class="btn btn-secondary selected">Semanal</button>
                     <button data-chart="monthlyTransactions" class="btn btn-secondary">Mensal</button>
@@ -100,7 +100,7 @@ $charts = new Charts();
                     showInLegend: true,
                     toolTipContent: "{name}: <strong>R${y}</strong>",
                     indexLabelPlacement: "outside",
-                    dataPoints: <?php echo json_encode($charts->getWeekGains(), JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?= json_encode($charts->getTransactions('ganho', 'week'), JSON_NUMERIC_CHECK); ?>
                 }]
             },
             weeklySpendsConfig: {
@@ -116,7 +116,7 @@ $charts = new Charts();
                     showInLegend: true,
                     toolTipContent: "{name}: <strong>R${y}</strong>",
                     indexLabelPlacement: "outside",
-                    dataPoints: <?php echo json_encode($charts->getWeekSpends(), JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?= json_encode($charts->getTransactions('gasto', 'week'), JSON_NUMERIC_CHECK); ?>
                 }]
             },
             monthProfitConfig: {
@@ -135,7 +135,7 @@ $charts = new Charts();
                         lineColor: "#F2AF5C",
                         markerColor: '#A6702E',
                         toolTipContent: "{name}: <strong>R${y}</strong>",
-                        dataPoints: <?php echo json_encode($charts->getMonthProfit(), JSON_NUMERIC_CHECK); ?>
+                        dataPoints: <?= json_encode($charts->getProfit('month'), JSON_NUMERIC_CHECK); ?>
                     }
                 ]
             },
@@ -154,7 +154,7 @@ $charts = new Charts();
                     lineColor: "#F2AF5C",
                     markerColor: '#A6702E',
                     toolTipContent: "{name}: <strong>R${y}</strong>",
-                    dataPoints: <?php echo json_encode($charts->getWeekProfit(), JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?= json_encode($charts->getProfit('week'), JSON_NUMERIC_CHECK); ?>
                 }]
             },
             weeklyTransactionsConfig: {
@@ -171,16 +171,22 @@ $charts = new Charts();
                     {
                         type: "line", //change type to bar, line, area, pie, etc
                         lineColor: "red",
+                        color: "red",
+                        name: "Gastos",
+                        showInLegend: true,
                         markerColor: 'red',
                         toolTipContent: "{name}: <strong>R${y}</strong>",
-                        dataPoints: <?php echo json_encode($charts->getWeekSpends(), JSON_NUMERIC_CHECK); ?>
+                        dataPoints: <?= json_encode($charts->getTransactions('gasto', 'week', JSON_NUMERIC_CHECK)); ?>
                     },
                     {
                         type: "line", //change type to bar, line, area, pie, etc
                         lineColor: "green",
+                        color: "green",
+                        name: "Ganhos",
+                        showInLegend: true,
                         markerColor: 'green',
                         toolTipContent: "{name}: <strong>R${y}</strong>",
-                        dataPoints: <?php echo json_encode($charts->getWeekGains(), JSON_NUMERIC_CHECK); ?>
+                        dataPoints: <?= json_encode($charts->getTransactions('ganho', 'week'), JSON_NUMERIC_CHECK); ?>
                     },
                 ]
             },
@@ -200,14 +206,14 @@ $charts = new Charts();
                         lineColor: "red",
                         markerColor: 'red',
                         toolTipContent: "{name}: <strong>R${y}</strong>",
-                        dataPoints: <?php echo json_encode($charts->getMonthSpends(), JSON_NUMERIC_CHECK); ?>
+                        dataPoints: <?= json_encode($charts->getTransactions('gasto', 'month'), JSON_NUMERIC_CHECK); ?>
                     },
                     {
                         type: "line", //change type to bar, line, area, pie, etc
                         lineColor: "green",
                         markerColor: 'green',
                         toolTipContent: "{name}: <strong>R${y}</strong>",
-                        dataPoints: <?php echo json_encode($charts->getMonthGains(), JSON_NUMERIC_CHECK); ?>
+                        dataPoints: <?= json_encode($charts->getTransactions('ganho', 'month'), JSON_NUMERIC_CHECK); ?>
                     },
                 ]
             }

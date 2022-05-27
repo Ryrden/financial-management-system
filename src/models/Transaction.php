@@ -196,4 +196,56 @@ class Transaction
         }
     }
 
+    public function getTransactionsOnDateInterval($userId, $dateStart, $dateEnd, $type) {
+        $conn = Connection::getConnection();
+        $sql = "SELECT * FROM movimentacao m WHERE id_usuario = :id AND m.data between :dateStart AND :dateEnd";
+        if ($type == "gasto")
+            $sql .= " AND tipo = 'gasto'";
+        else
+            $sql .= " AND tipo = 'ganho'";
+        try {
+            $statement = $conn->prepare($sql);
+            $statement->execute([
+                ":id" => $userId,
+                ":dateStart" => $dateStart,
+                ":dateEnd" => $dateEnd
+            ]);
+            return $statement->fetchAll(PDO::FETCH_ASSOC);
+        } catch (Exception $e) {
+            echo $e;
+            return false;
+        }
+    }
+
+
+    public function getProfitOnDate($date) {
+        $conn = Connection::getConnection();
+        $sql = "SELECT SUM(IF(m.tipo = 'ganho', m.valor, -m.valor)) as total FROM movimentacao m WHERE m.data = :date";
+
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([
+                ":date" => $date
+            ]);
+            return (double) $stmt->fetch(PDO::FETCH_ASSOC)["total"] / 100;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
+
+    public function getTransactionstOnDate($date, $type) {
+        $conn = Connection::getConnection();
+        $sql = "SELECT SUM(m.valor) as total FROM movimentacao m WHERE m.data = :date AND tipo = :type";
+
+        try {
+            $stmt = $conn->prepare($sql);
+            $stmt->execute([
+                ":date" => $date,
+                ":type" => $type,
+            ]);
+            return (double) $stmt->fetch(PDO::FETCH_ASSOC)["total"] / 100;
+        } catch (Exception $e) {
+            return false;
+        }
+    }
 }

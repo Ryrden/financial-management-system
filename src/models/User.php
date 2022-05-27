@@ -2,12 +2,12 @@
 
 class User
 {
-    public static function insert($name, $email, $password)
+    public static function insert($name, $email, $password, $imagem)
     {
         $userWithEmail = self::findUserWithEmail($email);
         $conn = Connection::getConnection();
 
-        $sql = "INSERT INTO usuario (nome, email, senha) VALUES (:nome, :email, :senha)";
+        $sql = "INSERT INTO usuario (nome, email, senha, imagem) VALUES (:nome, :email, :senha, :image)";
 
         if (!$userWithEmail["codigo"]) {
             try {
@@ -16,6 +16,7 @@ class User
                     ":nome" => $name,
                     ":email" => $email,
                     ":senha" => $password,
+                    ":image" => $imagem
                 ]);
             } catch (PDOException $e) {
                 throw new Exception("Erro ao inserir");

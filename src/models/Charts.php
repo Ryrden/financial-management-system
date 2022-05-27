@@ -5,7 +5,7 @@ class Charts
         $dataPoints = array();
         $months = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
                         "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-        
+
         $transactions = new Transaction();
         $actualUser = $_SESSION["user"]["codigo"];
         for($i = 1; $i <= 12; $i++){
@@ -29,48 +29,38 @@ class Charts
         return $points;
     }
 
-    public function getWeekProfit() {
-        return $this->getWeekPoints(function($i, $userId) {
+    public function getProfit($type) {
+        return $this->getMonthPoints(function($i, $userId) use ($type) {
             $transactionsModel = new Transaction();
-            return $transactionsModel->getCurrentWeekIncome($i, $userId);
+            if ($type == "month")
+                return $transactionsModel->getByMonth($i, $userId);
+            else
+                return $transactionsModel->getCurrentWeekIncome($i, $userId);
         });
     }
 
-    public function getWeekGains() {
-        return $this->getWeekPoints(function($i, $userId) {
+    public function getTransactions($type, $time) {
+        return $this->getWeekPoints(function($i, $userId) use ($type, $time) {
             $transactionsModel = new Transaction();
-            return $transactionsModel->getWeekTransactions($i, $userId,"ganho");
+            if ($time == "week")
+                return $transactionsModel->getWeekTransactions($i, $userId,$type);
+            else
+                return $transactionsModel->getMonthTransactions($i, $userId, $type);
         });
     }
 
-    public function getWeekSpends() {
-        return $this->getWeekPoints(function($i, $userId) {
-            $transactionsModel = new Transaction();
-            return $transactionsModel->getWeekTransactions($i, $userId,"gasto");
-        });
-    }
+    public function getTransactionsOnDateInterval($type, $date1, $date2) {
+        $model = new Transaction();
+        $points = array();
+        while (strtotime($date1) <= strtotime($date2)) {
+            if ($type == 'ganho' || $type == 'gasto')
+                $value = $model->getTransactionstOnDate(date('Y-m-d', strtotime($date1)), $type);
+            else
+                $value = $model->getProfitOnDate(date("Y-m-d", strtotime($date1)));
 
-    public function getMonthProfit() {
-        return $this->getMonthPoints(function($i, $userId) {
-            $transactionsModel = new Transaction();
-            return $transactionsModel->getByMonth($i, $userId);
-        });
+            $points[] = ["x" => (int) date("d", strtotime($date1)), "y" => $value, "label" => "Dia ". date('d/m', strtotime($date1))];
+            $date1 = date('Y-m-d', strtotime("+1 days", strtotime($date1)));
+        }
+        return $points;
     }
-
-    public function getMonthGains() {
-        return $this->getMonthPoints(function($i, $userId) {
-            $transactionsModel = new Transaction();
-            return $transactionsModel->getMonthTransactions($i, $userId,"ganho");
-        });
-    }
-
-    public function getMonthSpends() {
-        return $this->getMonthPoints(function($i, $userId) {
-            $transactionsModel = new Transaction();
-            return $transactionsModel->getMonthTransactions($i, $userId,"gasto");
-        });
-    }
-
 }
-
-?>

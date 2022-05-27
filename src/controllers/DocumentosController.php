@@ -8,6 +8,7 @@ class DocumentosController
     }
 
     public function generate() {
-
+        require_once "src/views/extrato.php";
     }
+
 }
