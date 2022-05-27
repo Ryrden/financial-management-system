@@ -24,13 +24,13 @@
             <div class="col-3 col-sm-4">
                 <a href="<?=BASE_URL?>">
                     <div class="d-flex flex-column align-items-center">
-                        <img alt="Home" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653501383/home_qywcac.svg" width="52" height="52">
+                        <img alt="Home" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653691871/home_nyzkem.svg" width="52" height="52">
                         <span>Home</span>
                     </div>
                 </a>
                 <a href="<?=BASE_URL."/profile"?>">
                     <div class="d-flex flex-column align-items-center">
-                        <img alt="Perfil" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653501383/pessoa_i95ddb.svg" width="52" height="52">
+                        <img alt="Perfil" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653691871/pessoa_cxr8tl.svg" width="52" height="52">
                         <span>Perfil</span>
                     </div>
                 </a>
@@ -38,13 +38,13 @@
             <div class="col-3 col-sm-4">
                 <a href="<?=BASE_URL."/questionario"?>">
                     <div class="d-flex flex-column align-items-center">
-                        <img alt="Questionário" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653501384/questionario_ppznng.svg" width="52" height="52">
+                        <img alt="Questionário" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653691871/questionario_pdef9b.svg" width="52" height="52">
                         <span>Questionário</span>
                     </div>
                 </a>
                 <a href="<?= BASE_URL."/documentos" ?>">
                     <div class="d-flex flex-column align-items-center">
-                        <img alt="Documentos" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653501383/documentos_kb6u7f.svg" width="52" height="52">
+                        <img alt="Documentos" class="m-2" src="https://res.cloudinary.com/davifelix/image/upload/v1653691871/documentos_iwghgs.svg" width="52" height="52">
                         <span>Documentos</span>
                     </div>
                 </a>

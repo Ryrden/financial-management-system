@@ -27,7 +27,6 @@ class Questionario
 
             return $mappedQuestions;
         } catch (PDOException $e) {
-            echo $e;
             return [];
         }
     }

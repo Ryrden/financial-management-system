@@ -54,7 +54,7 @@ $pagePreviewOffset = 1;
                                                 <form method="post" class="deleteForm" action="<?=BASE_URL."/transaction/delete"?>">
                                                     <input name="id" type="hidden" value="<?= $transaction->id ?>">
                                                     <button type="submit" style="border: none; background: none">
-                                                        <img src="src/imgs/trash.svg" alt="Lixeira">
+                                                        <img src="https://res.cloudinary.com/davifelix/image/upload/v1653691871/trash_vc1qeq.svg" alt="Lixeira">
                                                     </button>
                                                 </form>
                                                 <button class="btnEdit" data-id="<?=$transaction->id?>"
@@ -63,7 +63,7 @@ $pagePreviewOffset = 1;
                                                     data-tipo="<?=$transaction->tipo?>" data-nome="<?=$transaction->nome?>"
                                                     style="border: none; background: none;" type="button"
                                                     data-toggle="modal" data-target="#editTransactionModal">
-                                                    <img src="src/imgs/edit.svg" alt="Editar">
+                                                    <img src="https://res.cloudinary.com/davifelix/image/upload/v1653691871/edit_ziuzdh.svg" alt="Editar">
                                                 </button>
 
                                             </div>

@@ -6,10 +6,11 @@ class UserController
         $name = $_POST['name'];
         $email= $_POST['email'];
         $password = $_POST['password'];
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $image = 'https://res.cloudinary.com/davifelix/image/upload/v1653580469/user_kyeqca.png';
 
         try {
-            User::insert($name, $email, $password, $image);
+            User::insert($name, $email, $hashedPassword, $image);
             echo "<script>alert('Usuário cadastrado com sucesso!'); location.href='".BASE_URL."/login"."'; </script>";
 
         } catch (Exception $e) {
@@ -23,6 +24,7 @@ class UserController
         $password = $_POST['password'];
         try {
             $user = User::findUserWithEmail($email);
+            $user['senha'] = password_verify($password, $user['senha']);
             if (!$user OR $user['senha'] != $password) {
                 echo "<script> alert('Credenciais incorretas'); location.href='".BASE_URL."/login"."'; </script>";
             } else {
