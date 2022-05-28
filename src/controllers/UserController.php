@@ -83,7 +83,7 @@ class UserController
                 $image = $_SESSION["user"]["imagem"];
             }
             $password = $_POST["password"];
-            $model->update($id, $nome, $image, empty($password) ? $_SESSION["user"]["senha"] : $password);
+            $model->update($id, $nome, $image, empty($password) ? $_SESSION["user"]["senha"] : password_hash($password, PASSWORD_DEFAULT));
             echo "<script>location.href='".BASE_URL."/profile"."'</script>";
         } catch (Exception $e) {
             echo "<script>alert('Erro ao atualizar perfil'); location.href='".BASE_URL."'</script>";
