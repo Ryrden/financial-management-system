@@ -130,6 +130,11 @@ final class Version20220527235052 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->throwIrreversibleMigrationException();
+        $this->addSql('SET FOREIGN_KEY_CHECKS = 0;');
+        $this->addSql("DROP TABLE IF EXISTS usuario");
+        $this->addSql("DROP TABLE IF EXISTS perfil");
+        $this->addSql("DROP TABLE IF EXISTS movimentacao");
+        $this->addSql("DROP TABLE IF EXISTS alternativa");
+        $this->addSql('SET FOREIGN_KEY_CHECKS = 1;');
     }
 }
