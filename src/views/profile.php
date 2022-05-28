@@ -41,7 +41,7 @@ $charts = new Charts();
             <h1 class="text-sm-light text-dark mb-5">Meu perfil</h1>
             <div class="container mt-4">
                 <div class="row justify-content-around">
-                    <div class="col col-sm-5 d-flex flex-column align-items-center justify-content-center primaryContent bg-white rounded-lg mb-2 mb-sm-0">
+                    <div class="col-12 col-md-5 d-flex flex-column align-items-center justify-content-center primaryContent bg-white rounded-lg mb-2 mb-sm-0">
                         <?php if ($_SESSION["user"]["nomePerfil"]) { ?>
                         <h2 class="my-3 text-dark text-center"><?= $_SESSION["user"]["nomePerfil"] ?></h2>
                         <img class="my-3" width="100px" src="<?=$_SESSION["user"]["perfilImagem"] ?>" alt="<?= $_SESSION["user"]["perfilImagem"] ?>">
@@ -50,7 +50,7 @@ $charts = new Charts();
                             <p class="text-center text-dark">Responda o questionário para definir seu perfil</p>
                         <?php } ?>
                     </div>
-                    <div class="col col-sm-5 d-flex flex-column rounded bg-white">
+                    <div class="col-12 col-md-5 d-flex flex-column rounded bg-white">
                         <h2 class="text-dark text-center">Gastos e ganhos semanais</h2>
                         <div id="weekInfo" class="mt-2 mb-4 mx-auto button-group">
                             <button data-chart="weeklyGains" class="btn btn-secondary selected">Ganhos</button>

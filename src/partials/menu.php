@@ -2,7 +2,7 @@
     UserController::refreshUser($_SESSION["user"]["email"]);
     $income = Format::formatMoneyValue($_SESSION["user"]["renda"] / 100)
 ?>
-<div class="col col-sm-4 col-lg-3">
+<div class="col col-sm-4 col-lg-3 my-3 my-md-0">
     <!-- Primeira Coluna -->
     <div class="container">
         <div class="row flex-column justify-content-center align-items-center">
