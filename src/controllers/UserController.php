@@ -49,7 +49,7 @@ class UserController
         }
         if (!$_SESSION["user"]["codigo"]) {
             $loginUrl = BASE_URL."/login";
-            echo "<script>location.href='$loginUrl'</script>";
+            echo "<script> location.href='".$loginUrl."'; </script>";
         }
     }
 

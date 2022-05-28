@@ -20,8 +20,7 @@ class Core
     private function parseUrl($url) {
         $url_info = parse_url($url);
         $path = $url_info["path"];
-        $array = explode('/', $path);
-        $calls = array_slice($array, 2);
+        $calls = array_slice(explode('/', $path), 1);
         if (count($calls) == 0 || $calls[0] == "") {
             return array("controllerName" => "Home", "methodName" => "index");
         } else {

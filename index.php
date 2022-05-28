@@ -1,8 +1,15 @@
 <?php
 
-const BASE_URL = "http://localhost/financial-management-system";
-
 require "vendor/autoload.php";
+
+try {
+    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+} catch (Exception $e) {
+
+}
+
+define('BASE_URL', $_ENV['BASE_URL']);
 
 require_once "src/controllers/Core.php";
 
@@ -33,13 +40,6 @@ require_once "src/controllers/ProfileController.php";
 require_once "src/utils/Format.php";
 
 require_once "src/services/Upload.php";
-
-try {
-    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
-    $dotenv->load();
-} catch (Exception $e) {
-    echo ".env note defined";
-}
 
 
 $core = new Core();
