@@ -8,7 +8,8 @@ abstract class Connection
             $dbname = $_ENV["DATABASE_NAME"];
             $dbuser = $_ENV["DATABASE_USER"];
             $dbpass = $_ENV["DATABASE_PASSWORD"];
-            self::$conn = new PDO("mysql: host=localhost; dbname=$dbname; charset=utf8", $dbuser, $dbpass);
+            $dbhost = $_ENV["DATABASE_HOST"];
+            self::$conn = new PDO("mysql:host=$dbhost;dbname=$dbname;charset=utf8", $dbuser, $dbpass);
             self::$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return self::$conn;
         }
