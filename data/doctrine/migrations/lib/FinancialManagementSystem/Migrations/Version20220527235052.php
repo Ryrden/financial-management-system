@@ -66,18 +66,18 @@ final class Version20220527235052 extends AbstractMigration
         $this->addSql('alter table movimentacao add constraint foreign key (id_usuario) references usuario(codigo);');
 
 
-        $this->addSql('insert into questionario (quantidadePerguntas) values (10)');
-        $this->addSql("insert into pergunta (texto, id_questionario) values
-            ('O que você ganha por mês é suficiente para arcar com os seus gastos?', 1),
-            ('Você tem conseguido pagar suas despesas em dia e à vista?', 1),
-            ('Você realiza seu orçamento financeiro mensalmente?', 1),
-            ('Você consegue fazer algum tipo de investimento?', 1),
-            ('Como você planeja a sua aposentadoria?', 1),
-            ('O que você entende sobre ser Independente Financeiramente?', 1),
-            ('Você sabe quais são seus sonhos e objetivos de curto, médio e longo prazos?', 1),
-            ('Se um imprevisto alterasse a sua situação financeira, qual seria a sua reação?', 1),
-            ('Se a partir de hoje você não recebesse mais seu ganho, por quanto tempo você conseguiria manter seu atual padrão de vida?', 1),
-            ('Quando você decide comprar um produto, qual é a sua atitude?', 1)"
+        $this->addSql('insert into questionario (id, quantidadePerguntas) values (1, 10)');
+        $this->addSql("insert into pergunta (id, texto, id_questionario) values
+            (1, 'O que você ganha por mês é suficiente para arcar com os seus gastos?', 1),
+            (2, 'Você tem conseguido pagar suas despesas em dia e à vista?', 1),
+            (3, 'Você realiza seu orçamento financeiro mensalmente?', 1),
+            (4, 'Você consegue fazer algum tipo de investimento?', 1),
+            (5, 'Como você planeja a sua aposentadoria?', 1),
+            (6, 'O que você entende sobre ser Independente Financeiramente?', 1),
+            (7, 'Você sabe quais são seus sonhos e objetivos de curto, médio e longo prazos?', 1),
+            (8, 'Se um imprevisto alterasse a sua situação financeira, qual seria a sua reação?', 1),
+            (9, 'Se a partir de hoje você não recebesse mais seu ganho, por quanto tempo você conseguiria manter seu atual padrão de vida?', 1),
+            (10, 'Quando você decide comprar um produto, qual é a sua atitude?', 1)"
         );
         $this->addSql("insert into alternativa (texto, id_pergunta, pontuacao) values
             ('Consigo pagar minhas contas e ainda guardo mais 10% dos meus ganhos todo mês', 1, 10),

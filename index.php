@@ -34,8 +34,13 @@ require_once "src/utils/Format.php";
 
 require_once "src/services/Upload.php";
 
-$dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+try {
+    $dotenv = \Dotenv\Dotenv::createImmutable(__DIR__);
+    $dotenv->load();
+} catch (Exception $e) {
+    echo ".env note defined";
+}
+
 
 $core = new Core();
 $core->start($_SERVER['REQUEST_URI'], $_GET);
