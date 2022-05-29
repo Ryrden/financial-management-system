@@ -24,6 +24,10 @@ body{
     background: #f5eceb;
 }
 
+.menu-lateral img {
+    border-radius: 50%;
+}
+
 .bg-half::before {
     content: ' ';
     position: absolute;

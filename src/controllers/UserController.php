@@ -73,6 +73,9 @@ class UserController
 
             $imageName = $_FILES["image"]["tmp_name"];
             $imageSize = $_FILES["image"]["size"];
+            if ($_FILES["image"]["error"] != 0)
+                throw new Exception("Image too big");
+
             if (!empty($imageName)) {
                 $uploader = new Upload();
                 $response = $uploader->uploadImage($imageName, $imageSize);
@@ -82,9 +85,11 @@ class UserController
             } else {
                 $image = $_SESSION["user"]["imagem"];
             }
+
             $password = $_POST["password"];
             $model->update($id, $nome, $image, empty($password) ? $_SESSION["user"]["senha"] : password_hash($password, PASSWORD_DEFAULT));
             echo "<script>location.href='".BASE_URL."/profile"."'</script>";
+
         } catch (Exception $e) {
             echo "<script>alert('Erro ao atualizar perfil'); location.href='".BASE_URL."'</script>";
         }

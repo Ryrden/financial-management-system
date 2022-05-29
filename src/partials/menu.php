@@ -5,8 +5,8 @@
 <div class="col col-sm-4 col-lg-3 my-3 my-md-0">
     <!-- Primeira Coluna -->
     <div class="container">
-        <div class="row flex-column justify-content-center align-items-center">
-            <img style="cursor: pointer" src="<?= $_SESSION["user"]["imagem"] ?>" alt="..." class="border-dark m-3 rounded-circle" width="100px">
+        <div class="row flex-column justify-content-center align-items-center menu-lateral">
+            <?= (new Upload())->getTransformedImage($_SESSION["user"]["imagem"]) ?>
             <div class="d-flex flex-column">
                 <span id="userName"><?=$_SESSION["user"]["nome"]?></span>
                 <span><?= $_SESSION["user"]["perfil"] ?? "" ?></span>

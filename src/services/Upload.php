@@ -3,6 +3,10 @@
 use Cloudinary\Configuration\Configuration;
 
 use Cloudinary\Api\Upload\UploadApi;
+use Cloudinary\Tag\ImageTag;
+use Cloudinary\Transformation\Resize;
+use Cloudinary\Transformation\Gravity;
+use Cloudinary\Transformation\FocusOn;
 
 class Upload
 {
@@ -33,11 +37,23 @@ class Upload
             }
             return false;
         } catch (Exception $e) {
-            echo $e;
             return false;
         }
 
 
+    }
+
+    public function getTransformedImage($url) {
+        $urlElements = explode("/", $url);
+        $tag = end($urlElements);
+        $imageTag = new ImageTag($tag);
+        return $imageTag
+            ->resize(
+                Resize::thumbnail()
+                    ->width(100)
+                    ->height(100)
+                    ->gravity(Gravity::focusOn(FocusOn::face()))
+            );
     }
 
 }
