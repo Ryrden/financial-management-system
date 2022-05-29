@@ -53,7 +53,7 @@ class Charts
             else
                 $value = $model->getProfitOnDate($userId, $date1);
 
-            $points[] = ["x" => (int) date("d", strtotime($date1)), "y" => $value, "label" => "Dia ". date('d/m', strtotime($date1))];
+            $points[] = ["y" => $value, "label" => "Dia ". date('d/m', strtotime($date1)), "name" => "Dia ". date('d/m', strtotime($date1))];
             $date1 = date('Y-m-d', strtotime("+1 days", strtotime($date1)));
         }
         return $points;
