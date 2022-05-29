@@ -73,7 +73,7 @@ class UserController
 
             $imageName = $_FILES["image"]["tmp_name"];
             $imageSize = $_FILES["image"]["size"];
-            if ($_FILES["image"]["error"] != 0)
+            if (!empty($imageName) && $_FILES["image"]["error"] != 0)
                 throw new Exception("Image too big");
 
             if (!empty($imageName)) {
@@ -86,12 +86,17 @@ class UserController
                 $image = $_SESSION["user"]["imagem"];
             }
 
-            $password = $_POST["password"];
-            $model->update($id, $nome, $image, empty($password) ? $_SESSION["user"]["senha"] : password_hash($password, PASSWORD_DEFAULT));
-            echo "<script>location.href='".BASE_URL."/profile"."'</script>";
+            $password = $_POST["currentPassword"];
+            $newPassword = $_POST["password"];
+            if (!empty($newPassword) && !password_verify($password, $_SESSION["user"]["senha"])) {
+                echo "<script>alert('Senha incorreta'); location.href='".BASE_URL."'</script>";
+            } else {
+                $model->update($id, $nome, $image, empty($newPassword) ? $_SESSION["user"]["senha"] : password_hash($newPassword, PASSWORD_DEFAULT));
+                echo "<script>location.href='".BASE_URL."/profile"."'</script>";
+            }
 
         } catch (Exception $e) {
-            echo "<script>alert('Erro ao atualizar perfil'); location.href='".BASE_URL."'</script>";
+            echo "<script>alert('".$e->getMessage()."'); location.href='".BASE_URL."'</script>";
         }
     }
 }

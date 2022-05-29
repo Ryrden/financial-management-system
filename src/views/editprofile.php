@@ -37,6 +37,10 @@ if (!isset($_SESSION))
                             <input type="file" class="d-block text-dark" name="image" id="image">
                         </div>
                         <div class="form-group">
+                            <label for="currentPassword" class="text-dark">Senha antiga</label>
+                            <input type="password" placeholder="Apenas caso deseje trocar sua senha" class="form-control" name="currentPassword" id="currentPassword">
+                        </div>
+                        <div class="form-group">
                             <label for="password" class="text-dark">Senha</label>
                             <input minlength="6" type="password" name="password" id="password" class="form-control">
                             <small class="text-dark">Digite a senha apenas se deseja trocá-la</small>
