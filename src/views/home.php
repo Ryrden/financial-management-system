@@ -34,7 +34,7 @@ $pagePreviewOffset = 1;
                     <h1 class="h2 mb-5 text-dark text-sm-light" id="subTitle">Seja Bem-vindo(a), <?=$_SESSION["user"]["nome"]?></h1>
                     <div class="primaryContent bg-white rounded-lg">
                         <div class="container py-3 gap-2">
-                            <h2 class="text-dark pb-3 pt-2">Últimar Movimentações</h2>
+                            <h2 class="text-dark pb-3 pt-2">Últimas Movimentações</h2>
                             <ul class="p-0">
                                 <?php if (count($transactions) == 0) { ?>
                                 <p class="text-dark">Não há transações</p>
@@ -155,7 +155,7 @@ $pagePreviewOffset = 1;
                                         placeholder="00.00">
                                 </div>
                                 <div class="form-group">
-                                    <label class="text-dark" for="tipo">Example select</label>
+                                    <label class="text-dark" for="tipo">Tipo de movimentação</label>
                                     <select class="form-control" name="tipo" id="tipo">
                                         <option value="ganho" selected>Ganho</option>
                                         <option value="gasto">Gasto</option>
@@ -165,7 +165,7 @@ $pagePreviewOffset = 1;
                                     <label class="text-dark" for="data">Data</label>
                                     <input type="date" class="form-control" id="data" name="data">
                                 </div>
-                                <button type="submit" class="btn btn-primary align-self-end">Submit</button>
+                                <button type="submit" class="btn btn-primary align-self-end">Adicionar</button>
                             </form>
                         </div>
                     </div>

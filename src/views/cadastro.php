@@ -37,7 +37,7 @@
                     <input type="password" minlength="6" class="form-control" id="passwordConfirm">
                 </div>
                 <button type="submit" class="btn btn-primary px-4 py-2 rounded-pill text-white">Entrar</button>
-                <p>Já possui conta? <a href="<?php echo BASE_URL ?>/login">Fazer login</a></p>
+                <p class="text-dark">Já possui conta? <a href="<?php echo BASE_URL ?>/login">Fazer login</a></p>
             </form>
         </div>
     </div>
