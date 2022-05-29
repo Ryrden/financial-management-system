@@ -79,7 +79,7 @@ $pagePreviewOffset = 1;
                                     <ul class="pagination justify-content-center">
 
                                         <?php if (isset($currentPage) && $currentPage > 1) { ?>
-                                            <li class="page-item"><a class="page-link" href="?page=<?= $_GET["page"] - 1 ?>">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="?page=<?= $_GET["page"] - 1 ?>">Anterior</a></li>
                                         <?php }?>
 
                                         <li class="page-item <?= $currentPage == 1 ? "active" : "" ?>"><a href="?page=1" class="page-link">1</a></li>
@@ -101,7 +101,7 @@ $pagePreviewOffset = 1;
                                         <?php } ?>
 
                                         <?php if ($currentPage < $maxPages) { ?>
-                                            <li class="page-item"><a class="page-link" href="?page=<?= $currentPage + 1 ?>">Next</a></li>
+                                            <li class="page-item"><a class="page-link" href="?page=<?= $currentPage + 1 ?>">Próximo</a></li>
                                         <?php }?>
                                     </ul>
                                 </nav>
