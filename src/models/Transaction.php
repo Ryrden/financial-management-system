@@ -198,7 +198,7 @@ class Transaction
 
     public function getTransactionsOnDateInterval($userId, $dateStart, $dateEnd, $type) {
         $conn = Connection::getConnection();
-        $sql = "SELECT * FROM movimentacao m WHERE id_usuario = :id AND m.data between :dateStart AND :dateEnd";
+        $sql = "SELECT * FROM movimentacao m WHERE id_usuario = :id AND m.data between :dateStart AND :dateEnd ORDER BY m.data DESC";
         if ($type == "gasto")
             $sql .= " AND tipo = 'gasto'";
         else if ($type == "ganho")
