@@ -42,7 +42,7 @@ $charts = new Charts();
                         <?php foreach ($transactions as $transaction) { ?>
                             <tr>
                                 <td><?=$transaction["nome"]?></td>
-                                <td><?=$transaction["valor"]?></td>
+                                <td><?=$transaction["tipo"] == "gasto" ? "- " : ""?><?=Format::formatMoneyValue($transaction["valor"] /100)?></td>
                                 <td><?=date('d/m/Y', strtotime($transaction["data"]))?></td>
                             </tr>
                         <?php } ?>
@@ -75,7 +75,7 @@ $charts = new Charts();
                     lineColor: "#F2AF5C",
                     markerColor: '#A6702E',
                     toolTipContent: "{name}: <strong>R${y}</strong>",
-                    dataPoints: <?= json_encode($charts->getTransactionsOnDateInterval($tipo, $date1, $date2), JSON_NUMERIC_CHECK); ?>
+                    dataPoints: <?= json_encode($charts->getPointsOnDateInterval($tipo, $date1, $date2), JSON_NUMERIC_CHECK); ?>
                 },
             ]
         })

@@ -49,14 +49,15 @@ class Charts
         });
     }
 
-    public function getTransactionsOnDateInterval($type, $date1, $date2) {
+    public function getPointsOnDateInterval($type, $date1, $date2) {
         $model = new Transaction();
         $points = array();
+        $userId = $_SESSION["user"]["codigo"];
         while (strtotime($date1) <= strtotime($date2)) {
             if ($type == 'ganho' || $type == 'gasto')
-                $value = $model->getTransactionstOnDate(date('Y-m-d', strtotime($date1)), $type);
+                $value = $model->getTransactionstOnDate($userId, $date1, $type);
             else
-                $value = $model->getProfitOnDate(date("Y-m-d", strtotime($date1)));
+                $value = $model->getProfitOnDate($userId, $date1);
 
             $points[] = ["x" => (int) date("d", strtotime($date1)), "y" => $value, "label" => "Dia ". date('d/m', strtotime($date1))];
             $date1 = date('Y-m-d', strtotime("+1 days", strtotime($date1)));
