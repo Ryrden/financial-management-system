@@ -1,38 +1,32 @@
 <?php
 class Charts
 {
-    private function getMonthPoints($function){
-        $dataPoints = array();
-        $months = ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
-                        "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
-
-        $transactions = new Transaction();
-        $actualUser = $_SESSION["user"]["codigo"];
-        for($i = 1; $i <= 12; $i++){
-            $monthMoneyService = $function($i, $actualUser);
-            $currentMonth = $i - 1;
-            $data = array("x" => $i, "y"=> $monthMoneyService, "label"=> "$months[$currentMonth]", "name" => $months[$currentMonth]);
-            $dataPoints[] = $data;
+    private function getLabels($time){
+        if ($time == 'week') {
+            return ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
         }
-        return $dataPoints;
+        return ["Janeiro","Fevereiro","Março","Abril","Maio","Junho",
+            "Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"];
     }
 
-    private function getWeekPoints($function) {
+    private function getPoints($labels, $time, $function) {
         $points = array();
         $userId = $_SESSION["user"]["codigo"];
-        $weekdays = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"];
+        $start = $time == "month" ? 1 : 0;
+        $end = $time == "month" ? count($labels) + 1 : count($labels);
 
-        for ($i = 0; $i<count($weekdays); $i++) {
+        for ($i = $start; $i<$end; $i++) {
+            $index = $time == "month" ? $i - 1 : $i;
             $weekTotalValue = $function($i, $userId);
-            $points[] = ["y" => $weekTotalValue, "name" => $weekdays[$i], "label" => $weekdays[$i]];
+            $points[] = ["y" => $weekTotalValue, "name" => $labels[$index], "label" => $labels[$index]];
         }
         return $points;
     }
 
-    public function getProfit($type) {
-        return $this->getMonthPoints(function($i, $userId) use ($type) {
+    public function getProfit($time) {
+        return $this->getPoints($this->getLabels($time), $time, function($i, $userId) use ($time) {
             $transactionsModel = new Transaction();
-            if ($type == "month")
+            if ($time == "month")
                 return $transactionsModel->getByMonth($i, $userId);
             else
                 return $transactionsModel->getCurrentWeekIncome($i, $userId);
@@ -40,7 +34,7 @@ class Charts
     }
 
     public function getTransactions($type, $time) {
-        return $this->getWeekPoints(function($i, $userId) use ($type, $time) {
+        return $this->getPoints($this->getLabels($time), $time, function($i, $userId) use ($type, $time) {
             $transactionsModel = new Transaction();
             if ($time == "week")
                 return $transactionsModel->getWeekTransactions($i, $userId,$type);
