@@ -96,7 +96,7 @@ $pagePreviewOffset = 1;
                                         <?php if ($currentPage != $maxPages && $currentPage + 2 * $pagePreviewOffset < $maxPages) { ?>
                                             <li class="page-item"><div class="page-link">...</div></li>
                                             <li class="page-item"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
-                                        <?php } else { ?>
+                                        <?php } else if ($currentPage != 1) { ?>
                                             <li class="page-item <?= $currentPage == $maxPages ? "active" : "" ?>"><a href="?page=<?=$maxPages?>" class="page-link"><?=$maxPages?></a></li>
                                         <?php } ?>
 

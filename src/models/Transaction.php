@@ -30,7 +30,7 @@ class Transaction
         $conn = Connection::getConnection();
 
         $offset = ($page - 1) * $this->pageSize;
-        $sql = "SELECT * FROM movimentacao M WHERE m.id_usuario= :id ORDER BY m.data DESC, m.id LIMIT $this->pageSize OFFSET $offset";
+        $sql = "SELECT * FROM movimentacao m WHERE m.id_usuario= :id ORDER BY m.data DESC, m.id LIMIT $this->pageSize OFFSET $offset";
         try {
             $statement = $conn->prepare($sql);
             $statement->execute([
