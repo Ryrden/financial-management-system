@@ -24,8 +24,7 @@ class UserController
         $password = $_POST['password'];
         try {
             $user = User::findUserWithEmail($email);
-            $user['senha'] = password_verify($password, $user['senha']);
-            if (!$user OR $user['senha'] != $password) {
+            if (!$user OR !password_verify($password, $user['senha'])) {
                 echo "<script> alert('Credenciais incorretas'); location.href='".BASE_URL."/login"."'; </script>";
             } else {
                 $_SESSION['user'] = $user;
