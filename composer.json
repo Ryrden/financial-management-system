@@ -22,7 +22,6 @@
       "ext-intl": "*",
       "ext-json": "*",
       "cloudinary/cloudinary_php": "^2",
-        "vlucas/phpdotenv": "^5.4",
-        "doctrine/migrations": "^3.4"
+        "vlucas/phpdotenv": "^5.4"
     }
 }
